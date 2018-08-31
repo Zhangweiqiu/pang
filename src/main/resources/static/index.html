@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .title{
+            width: 100%;
+            height: 60px;
+            margin-top: 30px;
+        }
+        #title{
+            width: 65%;
+            height:  60px;
+            line-height:  60px;
+            margin: 0px auto;
+            text-align: center;
+            font-size: 40px;
+        }
+        .form{
+            width: 100%;
+        }
+        .item{
+            width: 75%;
+            height: 140px;
+            margin: 150px auto 0px;
+            display: flex;
+        }
+        .key{
+            width: 20%;
+            height: 140px;
+            line-height: 140px;
+            text-align: center;
+            font-size: 40px;
+            margin-top: 30px;
+        }
+        .value{
+            width: 65%;
+            height: 140px;
+            line-height: 140px;
+            padding-left: 10px;
+            font-size: 40px;
+        }
+        .value>input{
+            width: 80%;
+            height: 50px;
+        }
+
+        .footer{
+            width: 100%;
+            height: 100px;
+            margin-top: 30px;
+        }
+
+        .button{
+            width: 40%;
+            height: 100px;
+            margin: 0px auto;
+            text-align: center;
+        }
+        .button>button{
+            width: 100px;
+            height: 60px;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="js/jquerysession.js"></script>
+</head>
+<body>
+  <div class="title">
+    <div id ="title">
+        <h1>程峰收款</h1>
+    </div>
+  </div>
+  <ul class="form">
+      <li class="item">
+          <div class="key">姓名:</div>
+          <div class="value"><input type="text" id="name"/></div>
+      </li>
+
+      <li class="item">
+          <div class="key">金额:</div>
+          <div class="value"><input type="text" id="money"/></div>
+      </li>
+
+      <li class="item">
+          <div class="key">备注:</div>
+          <div class="value"><textarea  rows="3" cols="20"  id="tell"></textarea></div>
+      </li>
+  </ul>
+
+  <div class="footer">
+      <div class="button"> <button onclick="tijiao()"> 确认支付</button></div>
+  </div>
+</body>
+<script type="text/javascript">
+    function tijiao() {
+        $.ajax({
+            async: false,
+            url:'http://139.159.133.182:8080/pay/codePayment.do',
+            type:"post",
+            dataType:'jsonp',
+            jsonp: "callback",
+            data:{}
+        })
+    }
+
+</script>
+</html>
