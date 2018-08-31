@@ -89,9 +89,15 @@
       </li>
 
       <li class="item">
+          <div class="key">支付类型:</div>
+          <div class="value"><textarea  rows="3" cols="20"  id="type"></textarea></div>
+      </li>
+
+      <li class="item">
           <div class="key">备注:</div>
           <div class="value"><textarea  rows="3" cols="20"  id="tell"></textarea></div>
       </li>
+
   </ul>
 
   <div class="footer">
@@ -101,10 +107,10 @@
 <script type="text/javascript">
     function tijiao() {
         $.ajax({
-            url:'/',
+            url:'/passtopay',
             type:"post",
             dataType:'json',
-            data:{}
+            data:{name:$("#name").val(),money:$("#money").val(),type:$("#type").val(),tell:$("#tell").val()}
         })
     }
 
