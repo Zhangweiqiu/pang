@@ -101,11 +101,9 @@
 <script type="text/javascript">
     function tijiao() {
         $.ajax({
-            async: false,
-            url:'http://139.159.133.182:8080/pay/codePayment.do',
+            url:'/',
             type:"post",
-            dataType:'jsonp',
-            jsonp: "callback",
+            dataType:'json',
             data:{}
         })
     }
