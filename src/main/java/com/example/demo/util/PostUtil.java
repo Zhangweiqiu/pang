@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
+import sun.net.www.protocol.file.Handler;
 
 public class PostUtil {
 	private static Logger log = LoggerFactory.getLogger(PostUtil.class);
@@ -37,7 +38,8 @@ public class PostUtil {
             // 从上述SSLContext对象中得到SSLSocketFactory对象
             SSLSocketFactory ssf = sslContext.getSocketFactory();
  
-            URL url = new URL(requestUrl);
+          //  URL url = new URL(requestUrl);
+            URL url = new URL(null,requestUrl, new sun.net.www.protocol.https.Handler());
             HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
             httpUrlConn.setSSLSocketFactory(ssf);
  
