@@ -49,7 +49,7 @@ public class PayController {
 							 @RequestParam(name="tell",required=false)String tell,
 							 HttpServletResponse res) throws Exception {
 		Map<String,Object> map = new TreeMap<String, Object>();
-		String accessPayNo = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+		String accessPayNo = "24342324232423242";
 		PayManInfo payManInfo = new PayManInfo();
 		payManInfo.setName(name);
 		payManInfo.setRemarks(tell);
@@ -62,17 +62,18 @@ public class PayController {
 			map.put("goodsName", goodsNameService.findOne(1L).getGoodsName());
 		}else
 			map.put("goodsName", "程峰收款");
-		map.put("merchantId", "100863200");
+		map.put("merchantId", "100863193");
 		map.put("withdrawType", "0");
-		
+		map.put("bankNo", "6225758208004902");
 		map.put("tradeType", type);
-		map.put("tradeAmt", money);
+		map.put("tradeAmt", "0.1");
 		map.put("accessPayNo", accessPayNo);
 //		map.put("payNotifyUrl", "http://139.159.133.182:8080/index.php?s=/Home/MCNotify/index");
 //		map.put("frontBackUrl", "frontBackUrl");
 		String url = "http://139.159.133.182:8080/pay/codePayment.do";
 		String sign = Signature.getSign(map, key);
 		String data = AESUtil.encrypt(JSONObject.toJSONString(sign),key);
+		System.out.println(data);
 		String postStr = "accessId="+accessId+"&data="+data;
 		JSONObject jsonObject = PostUtil.httpRequest(url,"POST",postStr);
 		if(jsonObject.getInteger("code") == 0) {
