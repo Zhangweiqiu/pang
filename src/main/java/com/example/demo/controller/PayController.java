@@ -5,12 +5,15 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
@@ -40,7 +43,11 @@ public class PayController {
     private String key;
 	
 	@RequestMapping("/passtopay")
-	public boolean passtopay(String name,double money,String type,String tell) {
+	public void passtopay(@RequestParam(name="name",required=false)String name,
+							 @RequestParam(name="money",required=false)double money,
+							 @RequestParam(name="type",required=false)String type,
+							 @RequestParam(name="tell",required=false)String tell,
+							 HttpServletResponse res) throws Exception {
 		Map<String,Object> map = new TreeMap<String, Object>();
 		String accessPayNo = UUID.randomUUID().toString().replace("-", "").toLowerCase();
 		PayManInfo payManInfo = new PayManInfo();
@@ -61,10 +68,10 @@ public class PayController {
 		map.put("tradeType", type);
 		map.put("tradeAmt", money);
 		map.put("accessPayNo", accessPayNo);
-		map.put("payNotifyUrl", "http://139.159.133.182:8080/index.php?s=/Home/MCNotify/index");
-		map.put("frontBackUrl", "frontBackUrl");
-		String url = "http://139.159.133.182:8080/wxPay/backUrl.php";
-		String sign = Signature.getSign(map, url);
+//		map.put("payNotifyUrl", "http://139.159.133.182:8080/index.php?s=/Home/MCNotify/index");
+//		map.put("frontBackUrl", "frontBackUrl");
+		String url = "http://139.159.133.182:8080/pay/codePayment.do";
+		String sign = Signature.getSign(map, key);
 		String data = AESUtil.encrypt(JSONObject.toJSONString(sign),key);
 		String postStr = "accessId="+accessId+"&data="+data;
 		JSONObject jsonObject = PostUtil.httpRequest(url,"POST",postStr);
@@ -74,11 +81,11 @@ public class PayController {
 			payManInfo.setActualAmt(jsonObject.getDouble("actualAmt"));
 			payManInfo.setTradeType(jsonObject.getString("tradeType"));
 			payService.savePay(payManInfo);
-			return true;
+			res.setCharacterEncoding("utf-8");
+			res.sendRedirect(jsonObject.getString("htmlUrl"));
 		}
 		else {
 			log.debug("请求失败！");
-			return false;
 		}		
 	}
 	
