@@ -85,7 +85,8 @@ public class PayController {
 		System.out.println("--------------------------------");
 		System.out.println(AESUtil.decrypt(s,key));
 		System.out.println("--------------------------------");
-		JSONObject jsonObject = PostUtil.httpRequest(url,"POST",postStr);
+		
+		JSONObject jsonObject = JSONObject.parseObject(AESUtil.decrypt(s,key));
 		if(jsonObject.getInteger("code") == 0) {
 			log.debug("请求成功！");
 			payManInfo.setAccessPayNo(jsonObject.getString("payNo"));
