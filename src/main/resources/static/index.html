@@ -77,8 +77,7 @@
             height: 70px;
         }
     </style>
-    <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="js/jquerysession.js"></script>
+
 </head>
 <body>
   <div class="title">
@@ -109,17 +108,19 @@
       <div class="button"> <button onclick="tijiao()"> 确认支付</button></div>
   </div>
 </body>
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="js/jquerysession.js"></script>
 <script type="text/javascript">
     function tijiao() {
+        alert("123");
         $.ajax({
             url:'/passtopay',
-            type:"post",
-            dataType:'json',
+            type:'post',
             data:{name:$("#name").val(),money:$("#money").val(),tell:$("#tell").val()},
-            success:function (data) {
-                alert(data);
-                if ("null" != data) {
-                    location.href = data;
+            dataType:'Json',
+            success:function (result) {
+                if ("" != result.re ||  null != result.re) {
+                    location.href = result.re;
                 }
             }
         })

@@ -44,7 +44,7 @@ public class PayController {
     private String key;
 	
 	@RequestMapping("/passtopay")
-	public String  passtopay(@RequestParam(name="name",required=false)String name,
+	public Map<String,Object>  passtopay(@RequestParam(name="name",required=false)String name,
 							 @RequestParam(name="money",required=false)Integer money,
 							 @RequestParam(name="tell",required=false)String tell,
 							 HttpServletResponse res) throws Exception {
@@ -87,12 +87,15 @@ public class PayController {
 			payManInfo.setTradeType(jsonObject.getString("tradeType"));
 			payService.savePay(payManInfo);
 			System.out.println( jsonObject.getString("htmlUrl"));
-			return jsonObject.getString("htmlUrl");
+			//res.sendRedirect(jsonObject.getString("htmlUrl"));
+			map = new HashMap<>();
+			map.put("re",jsonObject.getString("htmlUrl"));
+			return map;
 		}
 		else {
 			log.debug("请求失败！");
 		}
-		return null;
+		return map;
 	}
 	
 	
