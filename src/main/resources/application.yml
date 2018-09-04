@@ -10,5 +10,5 @@ spring:
         hbm2ddl:
           auto: update
 payman: 
-  key: 2b6af48b79c54f86a04508a2368e83da
+  key: 795b9e3ac39f44a2a28ce68df1928f60
   accessId: 100435698

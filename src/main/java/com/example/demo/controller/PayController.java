@@ -49,7 +49,7 @@ public class PayController {
 							 @RequestParam(name="type",required=false)String type,
 							 @RequestParam(name="tell",required=false)String tell,
 							 HttpServletResponse res) throws Exception {
-//		System.out.println(AESUtil.decrypt("66AAF4843111F073F8DC28DAB6A1229DC5525CEAFE31F6DAC7537BD6DAD04444086A234F0DE3F84A52054E349CC49E6D9B60276682739AF33C69EA8AF0AD4DD9E9723986952AAF0E9A99CFC88CC49F6480D677D9B7F8A177AFE967BB15095D47BF63FEC8515644D49C394F026AF85527", key));
+//		System.out.println(AESUtil.decrypt("69CBC0961EAD88573955DAE7EE6B6DAE4A10D33CC9567AE23B5422A5AC3007165F7AD947348D283E37D3C2F2AE9BE9AF6E073E73D428CB745170AABF6D304F4A2CF63D68C5228C3F86FBAEEF926CE0217F454E6C50F3A9838C4E12BAFBB82AADA7E5989C05CC5A416E4D3855CABF9C8312F63F3B5C3A26FC9E82AA682571A4CF268CCF5892C4D88D1CE485A17FFF44FF4F1C356EFBAEE6A35D6325214230D7D54508A7881C66C4F6C23B3410581A449E8CAFDD49EB7C421CFC15E95A1B5149618C607FDFAA2D3846B8406794F6C3BCBEF327A6C538AD0BD45A46824E516D547B", key));
 		Map<String,Object> map = new HashMap<String, Object>();
 		String accessPayNo = UUID.randomUUID().toString().replace("-", "").toLowerCase();
 		PayManInfo payManInfo = new PayManInfo();
@@ -74,7 +74,8 @@ public class PayController {
 //		map.put("frontBackUrl", "frontBackUrl");
 		String url = "http://139.159.133.182:8080/pay/codePayment.do";
 		String sign = Signature.getSign(map, key);
-		String data = AESUtil.encrypt(JSONObject.toJSONString(sign),key);
+		map.put("sign", sign);
+		String data = AESUtil.encrypt(JSONObject.toJSONString(map),key);
 		System.out.println(data);
 		String postStr = "accessId="+accessId+"&data="+data;
 		JSONObject jsonObject = PostUtil.httpRequest(url,"POST",postStr);
