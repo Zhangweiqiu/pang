@@ -44,9 +44,8 @@ public class PayController {
     private String key;
 	
 	@RequestMapping("/passtopay")
-	public void passtopay(@RequestParam(name="name",required=false)String name,
+	public String  passtopay(@RequestParam(name="name",required=false)String name,
 							 @RequestParam(name="money",required=false)Integer money,
-							 @RequestParam(name="type",required=false)String type,
 							 @RequestParam(name="tell",required=false)String tell,
 							 HttpServletResponse res) throws Exception {
 //		System.out.println(AESUtil.decrypt("69CBC0961EAD88573955DAE7EE6B6DAE4A10D33CC9567AE23B5422A5AC3007165F7AD947348D283E37D3C2F2AE9BE9AF6E073E73D428CB745170AABF6D304F4A2CF63D68C5228C3F86FBAEEF926CE0217F454E6C50F3A9838C4E12BAFBB82AADA7E5989C05CC5A416E4D3855CABF9C8312F63F3B5C3A26FC9E82AA682571A4CF268CCF5892C4D88D1CE485A17FFF44FF4F1C356EFBAEE6A35D6325214230D7D54508A7881C66C4F6C23B3410581A449E8CAFDD49EB7C421CFC15E95A1B5149618C607FDFAA2D3846B8406794F6C3BCBEF327A6C538AD0BD45A46824E516D547B", key));
@@ -67,10 +66,7 @@ public class PayController {
 		
 		map.put("merchantId", "100863200");
 		map.put("withdrawType", "0");
-		if ("0".equals(type))
-			map.put("tradeType", "ZFBWAP");
-		else
-			map.put("tradeType", "WXWAP");
+		map.put("tradeType", "ZFBWAP");
 		map.put("tradeAmt", money * 100);
 		map.put("accessPayNo", accessPayNo);
 //		map.put("payNotifyUrl", "http://139.159.133.182:8080/index.php?s=/Home/MCNotify/index");
@@ -82,9 +78,6 @@ public class PayController {
 		System.out.println(data);
 		String postStr = "accessId="+accessId+"&data="+data;
 		String s = PostUtil.sendPost(url,postStr);
-		System.out.println("--------------------------------");
-		System.out.println(AESUtil.decrypt(s,key));
-		System.out.println("--------------------------------");
 		
 		JSONObject jsonObject = JSONObject.parseObject(AESUtil.decrypt(s,key));
 		if(jsonObject.getInteger("code") == 0) {
@@ -93,12 +86,13 @@ public class PayController {
 			payManInfo.setActualAmt(jsonObject.getDouble("actualAmt"));
 			payManInfo.setTradeType(jsonObject.getString("tradeType"));
 			payService.savePay(payManInfo);
-			res.setCharacterEncoding("utf-8");
-			res.sendRedirect(jsonObject.getString("htmlUrl"));
+			System.out.println( jsonObject.getString("htmlUrl"));
+			return jsonObject.getString("htmlUrl");
 		}
 		else {
 			log.debug("请求失败！");
-		}		
+		}
+		return null;
 	}
 	
 	

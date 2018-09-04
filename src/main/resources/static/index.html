@@ -97,13 +97,6 @@
           <div class="value"><input type="text" id="money"/></div>
       </li>
 
-      <li class="item">
-          <div class="key">支付类型:</div>
-          <div class="value"><select type="text"  id="type" >
-              <option value="0">支付宝支付</option>
-              <option value="1">微信支付</option>
-          </select> </div>
-      </li>
 
       <li class="item">
           <div class="key">备注:</div>
@@ -122,7 +115,13 @@
             url:'/passtopay',
             type:"post",
             dataType:'json',
-            data:{name:$("#name").val(),money:$("#money").val(),type:$("#type").val(),tell:$("#tell").val()}
+            data:{name:$("#name").val(),money:$("#money").val(),tell:$("#tell").val()},
+            success:function (data) {
+                alert(data);
+                if ("null" != data) {
+                    location.href = data;
+                }
+            }
         })
     }
 
