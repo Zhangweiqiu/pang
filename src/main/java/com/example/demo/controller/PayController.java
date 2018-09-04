@@ -67,7 +67,10 @@ public class PayController {
 		
 		map.put("merchantId", "100863200");
 		map.put("withdrawType", "0");
-		map.put("tradeType", type);
+		if ("0".equals(type))
+			map.put("tradeType", "ZFBWAP");
+		else
+			map.put("tradeType", "WXWAP");
 		map.put("tradeAmt", money);
 		map.put("accessPayNo", accessPayNo);
 //		map.put("payNotifyUrl", "http://139.159.133.182:8080/index.php?s=/Home/MCNotify/index");
@@ -78,6 +81,10 @@ public class PayController {
 		String data = AESUtil.encrypt(JSONObject.toJSONString(map),key);
 		System.out.println(data);
 		String postStr = "accessId="+accessId+"&data="+data;
+		String s = PostUtil.sendPost(url,postStr);
+		System.out.println("--------------------------------");
+		System.out.println(AESUtil.decrypt(s,key));
+		System.out.println("--------------------------------");
 		JSONObject jsonObject = PostUtil.httpRequest(url,"POST",postStr);
 		if(jsonObject.getInteger("code") == 0) {
 			log.debug("请求成功！");
