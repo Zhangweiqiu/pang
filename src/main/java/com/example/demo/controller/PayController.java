@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -44,12 +45,13 @@ public class PayController {
 	
 	@RequestMapping("/passtopay")
 	public void passtopay(@RequestParam(name="name",required=false)String name,
-							 @RequestParam(name="money",required=false)double money,
+							 @RequestParam(name="money",required=false)Integer money,
 							 @RequestParam(name="type",required=false)String type,
 							 @RequestParam(name="tell",required=false)String tell,
 							 HttpServletResponse res) throws Exception {
-		Map<String,Object> map = new TreeMap<String, Object>();
-		String accessPayNo = "24342324232423242";
+//		System.out.println(AESUtil.decrypt("66AAF4843111F073F8DC28DAB6A1229DC5525CEAFE31F6DAC7537BD6DAD04444086A234F0DE3F84A52054E349CC49E6D9B60276682739AF33C69EA8AF0AD4DD9E9723986952AAF0E9A99CFC88CC49F6480D677D9B7F8A177AFE967BB15095D47BF63FEC8515644D49C394F026AF85527", key));
+		Map<String,Object> map = new HashMap<String, Object>();
+		String accessPayNo = UUID.randomUUID().toString().replace("-", "").toLowerCase();
 		PayManInfo payManInfo = new PayManInfo();
 		payManInfo.setName(name);
 		payManInfo.setRemarks(tell);
@@ -62,11 +64,11 @@ public class PayController {
 			map.put("goodsName", goodsNameService.findOne(1L).getGoodsName());
 		}else
 			map.put("goodsName", "程峰收款");
-		map.put("merchantId", "100863193");
+		
+		map.put("merchantId", "100863200");
 		map.put("withdrawType", "0");
-		map.put("bankNo", "6225758208004902");
 		map.put("tradeType", type);
-		map.put("tradeAmt", "0.1");
+		map.put("tradeAmt", money);
 		map.put("accessPayNo", accessPayNo);
 //		map.put("payNotifyUrl", "http://139.159.133.182:8080/index.php?s=/Home/MCNotify/index");
 //		map.put("frontBackUrl", "frontBackUrl");

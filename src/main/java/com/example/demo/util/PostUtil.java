@@ -39,8 +39,8 @@ public class PostUtil {
             SSLSocketFactory ssf = sslContext.getSocketFactory();
  
 //            URL url = new URL(requestUrl);
-            URL url = new URL(null,requestUrl,new Handler());
-//            URL url = new URL(null,requestUrl, new sun.net.www.protocol.http.Handler());
+//            URL url = new URL(null,requestUrl,new Handler());
+            URL url = new URL(null,requestUrl, new sun.net.www.protocol.http.Handler());
             HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
             httpUrlConn.setSSLSocketFactory(ssf);
  
