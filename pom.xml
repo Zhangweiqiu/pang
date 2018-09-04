@@ -37,7 +37,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <!-- 排除内置容器，排除内置容器导出成war包可以让外部容器运行spring-boot项目-->
-            <!-- 排除内置容器，排除内置容器导出成war包可以让外部容器运行spring-boot项目-->
             <exclusions>
                 <exclusion>
                     <artifactId>log4j-over-slf4j</artifactId>

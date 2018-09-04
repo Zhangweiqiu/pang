@@ -95,6 +95,8 @@ public class PayController {
 		else {
 			log.debug("请求失败！");
 		}
+		map = new HashMap<>();
+		map.put("re","");
 		return map;
 	}
 	
