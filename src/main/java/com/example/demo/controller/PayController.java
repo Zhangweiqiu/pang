@@ -71,7 +71,7 @@ public class PayController {
 			map.put("tradeType", "ZFBWAP");
 		else
 			map.put("tradeType", "WXWAP");
-		map.put("tradeAmt", money);
+		map.put("tradeAmt", money * 100);
 		map.put("accessPayNo", accessPayNo);
 //		map.put("payNotifyUrl", "http://139.159.133.182:8080/index.php?s=/Home/MCNotify/index");
 //		map.put("frontBackUrl", "frontBackUrl");
