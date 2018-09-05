@@ -70,9 +70,12 @@ public class PayController {
 		payManInfo.setAccessPayNo(accessPayNo);
 		if(goodsNameService.findOne(1) != null) {
 			map.put("goodsName", goodsNameService.findOne(1).getGoodsName());
-		}else
+			payManInfo.setGoodsName(goodsNameService.findOne(1).getGoodsName());
+		}else {
 			map.put("goodsName", "程峰收款");
-		
+			payManInfo.setGoodsName("程峰收款");
+		}
+				
 		map.put("merchantId", "100863200");
 		map.put("withdrawType", "0");
 		map.put("tradeType", "ZFBWAP");
