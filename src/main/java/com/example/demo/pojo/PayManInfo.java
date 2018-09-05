@@ -16,9 +16,9 @@ public class PayManInfo {
 	
 	private String name;
 	
-	private double tradeAmt;//订单金额
+	private Integer tradeAmt;//订单金额
 	
-	private double actualAmt;//实际金额
+	private Integer actualAmt;//实际金额
 	
 	private String remarks;//备注
 	
@@ -104,7 +104,7 @@ public class PayManInfo {
 		return tradeAmt;
 	}
 
-	public void setTradeAmt(double tradeAmt) {
+	public void setTradeAmt(Integer tradeAmt) {
 		this.tradeAmt = tradeAmt;
 	}
 
@@ -112,7 +112,7 @@ public class PayManInfo {
 		return actualAmt;
 	}
 
-	public void setActualAmt(double actualAmt) {
+	public void setActualAmt(Integer actualAmt) {
 		this.actualAmt = actualAmt;
 	}
 

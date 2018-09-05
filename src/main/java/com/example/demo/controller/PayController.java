@@ -44,18 +44,18 @@ public class PayController {
 	@Value("${payman.key}")
     private String key;
 	
-	private String payNotifyUrl = "http://139.159.133.182:8080/payNotify.do";
+	private String payNotifyUrl = "http://194.156.157.117/payNotify.do";
 	
-	private String frontBackUrl = "http://139.159.133.182:8080/goBack.html";
+	private String frontBackUrl = "http://194.156.157.117/goBack.html";
 	
 	@RequestMapping("/passtopay")
 	public Map<String,Object>  passtopay(@RequestParam(name="name",required=false)String name,
-							 @RequestParam(name="money",required=false)double money,
+							 @RequestParam(name="money",required=false)Integer money,
 							 @RequestParam(name="tell",required=false)String tell,
 							 HttpServletResponse res) throws Exception {
 //		System.out.println(AESUtil.decrypt("69CBC0961EAD88573955DAE7EE6B6DAE4A10D33CC9567AE23B5422A5AC3007165F7AD947348D283E37D3C2F2AE9BE9AF6E073E73D428CB745170AABF6D304F4A2CF63D68C5228C3F86FBAEEF926CE0217F454E6C50F3A9838C4E12BAFBB82AADA7E5989C05CC5A416E4D3855CABF9C8312F63F3B5C3A26FC9E82AA682571A4CF268CCF5892C4D88D1CE485A17FFF44FF4F1C356EFBAEE6A35D6325214230D7D54508A7881C66C4F6C23B3410581A449E8CAFDD49EB7C421CFC15E95A1B5149618C607FDFAA2D3846B8406794F6C3BCBEF327A6C538AD0BD45A46824E516D547B", key));
 		Map<String,Object> map = new HashMap<String, Object>();
-		String accessPayNo = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+		String accessPayNo = "1536128138701659605";
 		PayManInfo payManInfo = new PayManInfo();
 		payManInfo.setName(name);
 		if(tell == null) {
@@ -146,8 +146,8 @@ public class PayController {
 		
 		payManInfo.setAccessPayNo(jsonObject.getString("accessPayNo"));
 		payManInfo.setPayNo(jsonObject.getString("payNo"));
-		payManInfo.setTradeAmt(jsonObject.getDouble("tradeAmt"));	
-		payManInfo.setActualAmt(jsonObject.getDouble("actualAmt")* 100);
+		payManInfo.setTradeAmt(jsonObject.getInteger("tradeAmt"));	
+		payManInfo.setActualAmt(jsonObject.getInteger("actualAmt")* 100);
 		payManInfo.setTradeStatus(jsonObject.getString("tradeStatus"));
 		payManInfo.setPayTime(jsonObject.getDate("payTime"));
 		payManInfo.setTradeType(jsonObject.getString("tradeType"));
