@@ -16,8 +16,8 @@ public class AdministratorController {
 	AdministratorService administratorService;
 	
 	@RequestMapping("/login")
-	public Map<String,Object> checklogin(String ucount, String password){
-		Map<String,Object> map = administratorService.checklogin(ucount, password);
+	public Map<String,Object> checklogin(String aid, String password){
+		Map<String,Object> map = administratorService.checklogin(aid, password);
 		return map;
 	}
 
