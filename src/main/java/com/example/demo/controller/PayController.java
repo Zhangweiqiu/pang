@@ -103,6 +103,7 @@ public class PayController {
 			//res.sendRedirect(jsonObject.getString("htmlUrl"));
 			map = new HashMap<>();
 			map.put("re",jsonObject.getString("htmlUrl"));
+			map.put("accessPayNo",accessPayNo);
 			return map;
 		}
 		else {
@@ -110,6 +111,7 @@ public class PayController {
 		}
 		map = new HashMap<>();
 		map.put("re","");
+		map.put("accessPayNo","");
 		return map;
 	}
 	
@@ -146,7 +148,6 @@ public class PayController {
 		PayManInfo payManInfo = new PayManInfo();
 		String payNotifyStr = AESUtil.decrypt(data, key);
 		JSONObject jsonObject = JSONObject.parseObject(payNotifyStr);
-		
 		payManInfo.setAccessPayNo(jsonObject.getString("accessPayNo"));
 		payManInfo.setPayNo(jsonObject.getString("payNo"));
 		payManInfo.setTradeAmt(jsonObject.getInteger("tradeAmt"));	
@@ -168,5 +169,10 @@ public class PayController {
 		else {
 			log.debug("数据更新失败！");
 		}
+	}
+
+	@RequestMapping("/Ispay")
+	public Map<String ,Object> isPay(String accessPayNo){
+		return payService.isPay(accessPayNo);
 	}
 }

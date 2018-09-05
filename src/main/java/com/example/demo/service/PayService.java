@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +35,16 @@ public class PayService {
 	
 	public List<PayManInfo> showPayList(){
 		return payRepository.findMyAll();
+	}
+
+
+	public Map<String ,Object> isPay(String accessPayNo){
+			Map<String,Object> map = new HashMap<>();
+			PayManInfo p = payRepository.findByAccessPayNo(accessPayNo);
+			if (p.getTradeStatus() == null || "".equals(p.getAccessPayNo()))
+				map.put("state",false);
+			else
+				map.put("state",true);
+			return map;
 	}
 }

@@ -22,4 +22,6 @@ public interface PayRepository extends CrudRepository<PayManInfo,Long>{
 	@Transactional
 	@Query(nativeQuery = true,value = "UPDATE pay_man_info SET  payNo =?1,tradeAmt =?2,actualAmt=?3 , tradeStatus=?4 , payTime=?5 , tradeType=?6 WHERE access_pay_no=?7")
 	boolean saveadd(String PayNo,double TradeAmt,double ActualAmt,String TradeStatus, Date PayTime, String TradeType,String access_pay_no);
+
+	PayManInfo findByAccessPayNo(String accessPayNo);
 }
