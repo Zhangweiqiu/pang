@@ -1,5 +1,7 @@
 package com.example.demo.pojo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,22 @@ public class PayManInfo {
 	
 	private String accessPayNo;//接入商订单号
 	
+	private String payNo;//平台订单号
+	
+	private String tradeStatus;
+	
+	private Date payTime;
+	
+	private String goodsName;
+	
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+
 	public String getTradeType() {
 		return tradeType;
 	}
@@ -33,6 +51,30 @@ public class PayManInfo {
 	}
 
 	
+	public String getPayNo() {
+		return payNo;
+	}
+
+	public void setPayNo(String payNo) {
+		this.payNo = payNo;
+	}
+
+	public String getTradeStatus() {
+		return tradeStatus;
+	}
+
+	public void setTradeStatus(String tradeStatus) {
+		this.tradeStatus = tradeStatus;
+	}
+
+	public Date getPayTime() {
+		return payTime;
+	}
+
+	public void setPayTime(Date payTime) {
+		this.payTime = payTime;
+	}
+
 	public String getAccessPayNo() {
 		return accessPayNo;
 	}

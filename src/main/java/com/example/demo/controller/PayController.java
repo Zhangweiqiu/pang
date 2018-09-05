@@ -43,6 +43,10 @@ public class PayController {
 	@Value("${payman.key}")
     private String key;
 	
+	private String payNotifyUrl = "http://139.159.133.182:8080/payNotify.do";
+	
+	private String frontBackUrl = "http://139.159.133.182:8080/";
+	
 	@RequestMapping("/passtopay")
 	public Map<String,Object>  passtopay(@RequestParam(name="name",required=false)String name,
 							 @RequestParam(name="money",required=false)Integer money,
@@ -54,7 +58,7 @@ public class PayController {
 		PayManInfo payManInfo = new PayManInfo();
 		payManInfo.setName(name);
 		payManInfo.setRemarks(tell);
-		payManInfo.setTradeAmt(money);
+//		payManInfo.setTradeAmt(money);
 //		payManInfo.setTradeType(type);
 //		payManInfo.setGoodsName("程峰收款");
 //		payManInfo.setRemarks(type);
@@ -69,22 +73,23 @@ public class PayController {
 		map.put("tradeType", "ZFBWAP");
 		map.put("tradeAmt", money * 100);
 		map.put("accessPayNo", accessPayNo);
-//		map.put("payNotifyUrl", "http://139.159.133.182:8080/index.php?s=/Home/MCNotify/index");
-//		map.put("frontBackUrl", "frontBackUrl");
+		map.put("payNotifyUrl", payNotifyUrl);
+		map.put("frontBackUrl", frontBackUrl);
 		String url = "http://139.159.133.182:8080/pay/codePayment.do";
 		String sign = Signature.getSign(map, key);
 		map.put("sign", sign);
+		System.out.println("--------------------");
+		System.out.println(sign);
+		System.out.println("--------------------");
 		String data = AESUtil.encrypt(JSONObject.toJSONString(map),key);
 		System.out.println(data);
 		String postStr = "accessId="+accessId+"&data="+data;
 		String s = PostUtil.sendPost(url,postStr);
 		
 		JSONObject jsonObject = JSONObject.parseObject(AESUtil.decrypt(s,key));
+		System.out.println(AESUtil.decrypt(s,key));
 		if(jsonObject.getInteger("code") == 0) {
 			log.debug("请求成功！");
-			payManInfo.setAccessPayNo(jsonObject.getString("payNo"));
-			payManInfo.setActualAmt(jsonObject.getDouble("actualAmt"));
-			payManInfo.setTradeType(jsonObject.getString("tradeType"));
 			payService.savePay(payManInfo);
 			System.out.println( jsonObject.getString("htmlUrl"));
 			//res.sendRedirect(jsonObject.getString("htmlUrl"));
@@ -103,6 +108,23 @@ public class PayController {
 	
 	@RequestMapping("/showPayList")
 	public List<PayManInfo> showPayList() {
+		return payService.showPayList();
+	}
+		
+	@RequestMapping("/payNotify.do")
+	public List<PayManInfo> payNotify(String accessId,String data) {
+		PayManInfo payManInfo = new PayManInfo();
+		String payNotifyStr = AESUtil.decrypt(data, key);
+		JSONObject jsonObject = JSONObject.parseObject(payNotifyStr);
+		
+		payManInfo.setAccessPayNo(jsonObject.getString("accessPayNo"));
+		payManInfo.setPayNo(jsonObject.getString("payNo"));
+		payManInfo.setTradeAmt(jsonObject.getDouble("tradeAmt"));	
+		payManInfo.setActualAmt(jsonObject.getDouble("actualAmt"));
+		payManInfo.setTradeStatus(jsonObject.getString("tradeStatus"));
+		payManInfo.setPayTime(jsonObject.getDate("payTime"));
+		payManInfo.setTradeType(jsonObject.getString("tradeType"));
+		payService.savePay(payManInfo);
 		return payService.showPayList();
 	}
 }
