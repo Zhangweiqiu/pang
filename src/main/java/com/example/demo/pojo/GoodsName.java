@@ -12,7 +12,7 @@ public class GoodsName {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long gid;
+	private Integer gid;
 
 	public String getGoodsName() {
 		return goodsName;
@@ -22,11 +22,11 @@ public class GoodsName {
 		this.goodsName = goodsName;
 	}
 
-	public Long getGid() {
+	public Integer getGid() {
 		return gid;
 	}
 
-	public void setGid(Long gid) {
+	public void setGid(Integer gid) {
 		this.gid = gid;
 	}
 	

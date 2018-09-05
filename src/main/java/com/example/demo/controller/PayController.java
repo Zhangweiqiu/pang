@@ -46,7 +46,7 @@ public class PayController {
 	
 	private String payNotifyUrl = "http://139.159.133.182:8080/payNotify.do";
 	
-	private String frontBackUrl = "http://139.159.133.182:8080/";
+	private String frontBackUrl = "http://139.159.133.182:8080/goBack.html";
 	
 	@RequestMapping("/passtopay")
 	public Map<String,Object>  passtopay(@RequestParam(name="name",required=false)String name,
@@ -58,14 +58,18 @@ public class PayController {
 		String accessPayNo = UUID.randomUUID().toString().replace("-", "").toLowerCase();
 		PayManInfo payManInfo = new PayManInfo();
 		payManInfo.setName(name);
-		payManInfo.setRemarks(tell);
+		if(tell == null) {
+			payManInfo.setRemarks("");
+		}
+		else
+			payManInfo.setRemarks(tell);
 //		payManInfo.setTradeAmt(money);
 //		payManInfo.setTradeType(type);
 //		payManInfo.setGoodsName("程峰收款");
 //		payManInfo.setRemarks(type);
 		payManInfo.setAccessPayNo(accessPayNo);
-		if(goodsNameService.findOne(1L) != null) {
-			map.put("goodsName", goodsNameService.findOne(1L).getGoodsName());
+		if(goodsNameService.findOne(1) != null) {
+			map.put("goodsName", goodsNameService.findOne(1).getGoodsName());
 		}else
 			map.put("goodsName", "程峰收款");
 		

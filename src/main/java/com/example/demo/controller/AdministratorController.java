@@ -20,5 +20,11 @@ public class AdministratorController {
 		Map<String,Object> map = administratorService.checklogin(aid, password);
 		return map;
 	}
+	
+//	@RequestMapping("/addkefu")
+//	public Map<String,Object> addkefu(String name){
+//		Map<String,Object> map = administratorService.checklogin(aid, password);
+//		return map;
+//	}
 
 }

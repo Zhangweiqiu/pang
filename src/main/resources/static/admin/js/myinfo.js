@@ -16,7 +16,7 @@ $(function () {
 function changeInfo() {
     var mc = $("#mycount").val();
     $.ajax({
-        url:'/admin?method=modify',
+        url:'/modifyName',
         type:'post',
         data:{count:mc},
         dataType:'Json',

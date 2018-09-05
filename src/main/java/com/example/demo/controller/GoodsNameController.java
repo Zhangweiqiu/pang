@@ -14,10 +14,10 @@ public class GoodsNameController {
 	GoodsNameService goodsNameService;
 
 	@RequestMapping("/modifyName")
-	public boolean modifyName(String name) {
+	public boolean modifyName(String count) {
 		GoodsName goodsName = new GoodsName();
-		goodsName.setGid(1L);
-		goodsName.setGoodsName(name);
+		goodsName.setGid(1);
+		goodsName.setGoodsName(count);
 	    if(goodsNameService.saveGoodsName(goodsName)) {
 	    	return true;
 	    }else

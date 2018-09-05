@@ -9,9 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.example.demo.pojo.GoodsName;
 
 
-public interface GoodsNameRepository extends CrudRepository<GoodsName,Long>{
+public interface GoodsNameRepository extends CrudRepository<GoodsName,Integer>{
 	
-	@Modifying
-	@Query(nativeQuery = true,value = "SELECT   *   FROM   goodsname   WHERE gid=?1")  
-	GoodsName findOne(Long gid);
+	
 }

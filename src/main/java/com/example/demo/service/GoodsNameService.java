@@ -12,9 +12,9 @@ public class GoodsNameService {
 	@Autowired
 	GoodsNameRepository goodsNameRepository;
 	
-	public GoodsName findOne(Long gid) {
-		if(goodsNameRepository.existsById(1L)) {
-			return goodsNameRepository.findOne(gid);
+	public GoodsName findOne(Integer gid) {
+		if(goodsNameRepository.existsById(1)) {
+			return goodsNameRepository.findById(gid).get();
 		}else
 			return null;
 	}
