@@ -61,7 +61,7 @@ function checkUser() {
         return false;
     }
     $.ajax({
-        url:'/admin?method=login',
+        url:'/login',
         type:'post',
         data: {aid:aid, password:password},
         dataType:'json',
