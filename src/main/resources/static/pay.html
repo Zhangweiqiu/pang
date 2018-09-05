@@ -115,8 +115,6 @@
     function tijiao() {
         var name = $("#name").val();
         var money = $("#money").val();
-        var accessPayNo;
-
         if (name == "" || null == name){
             $("#n").text("不能为空");
             return false;
@@ -133,8 +131,8 @@
             data:{name:name,money:money,tell:$("#tell").val()},
             dataType:'Json',
             success:function (result) {
-                if ("" != result.accessPayNo || null != result.accessPayNo)
-                    setInterval("circulateExecute("+accessPayNo+");",3000);
+                abc = result.accessPayNo;
+                setInterval("circulateExecute('"+abc+"')",3000);
                 if ("" != result.re ||  null != result.re) {
                     location.href = result.re;
                 }
@@ -142,17 +140,18 @@
         })
     }
 
-    function  circulateExecute(accessPayNo) {
+    function  circulateExecute(a) {
         $.ajax({
             url:'Ispay',
             type:'get',
-            type:'json',
-            data:{accessPayNo:accessPayNo},
+            typeType:'json',
+            data:{accessPayNo:a},
             success:function (result) {
                 if (result.state)
                     location.href = './goBack.html';
             }
-        })
+        });
     }
+
 </script>
 </html>

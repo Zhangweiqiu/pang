@@ -40,11 +40,13 @@ public class PayService {
 
 	public Map<String ,Object> isPay(String accessPayNo){
 			Map<String,Object> map = new HashMap<>();
-			PayManInfo p = payRepository.findByAccessPayNo(accessPayNo);
-			if (p.getTradeStatus() == null || "".equals(p.getAccessPayNo()))
-				map.put("state",false);
+			PayManInfo ps = new PayManInfo();
+			ps = payRepository.findByAccessPayNo(accessPayNo);
+			if ("-99".equals(ps.getTradeStatus()))
+					map.put("state", false);
 			else
-				map.put("state",true);
+					map.put("state", true);
+		System.out.println("==================================");
 			return map;
 	}
 }

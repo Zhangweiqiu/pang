@@ -68,6 +68,7 @@ public class PayController {
 //		payManInfo.setGoodsName("程峰收款");
 //		payManInfo.setRemarks(type);
 		payManInfo.setAccessPayNo(accessPayNo);
+		payManInfo.setTradeStatus("-99");
 		if(goodsNameService.findOne(1) != null) {
 			map.put("goodsName", goodsNameService.findOne(1).getGoodsName());
 			payManInfo.setGoodsName(goodsNameService.findOne(1).getGoodsName());
@@ -98,7 +99,7 @@ public class PayController {
 		System.out.println(AESUtil.decrypt(s,key));
 		if(jsonObject.getInteger("code") == 0) {
 			log.debug("请求成功！");
-//			payService.savePay(payManInfo);
+			payService.savePay(payManInfo);
 			System.out.println( jsonObject.getString("htmlUrl"));
 			//res.sendRedirect(jsonObject.getString("htmlUrl"));
 			map = new HashMap<>();
@@ -173,6 +174,7 @@ public class PayController {
 
 	@RequestMapping("/Ispay")
 	public Map<String ,Object> isPay(String accessPayNo){
+		System.out.println("----------------------------1");
 		return payService.isPay(accessPayNo);
 	}
 }
