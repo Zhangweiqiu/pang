@@ -10,7 +10,7 @@ var TableInit = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('#taskTable').bootstrapTable({
-            url: '/Task?method=TaskInfo',
+            url: '/showPayList',
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -40,33 +40,49 @@ var TableInit = function () {
             columns: [{
                 checkbox: true
             }, {
-                field: 'tid',
+                field: 'name',
                 align: 'center',
-                title: '编号',
+                title: '名字',
                 visible: false
 
             }, {
-                field: 'ttitle',
-                align: 'center',
-                title: '任务标题'
-
-            }, {
-                field: 'tcreatetime',
-                align: 'center',
-                title: '创建时间'
-
-            }, {
-                field: 'tfromname',
-                align: 'center',
-                title: '发送人'
-
-            }, {
-                field: 'ttoname',
-                title: '执行人',
+                field: 'accessPayNo',
+                title: '接入商订单号',
                 align: 'center'
             }, {
-                field: 'tprior',
-                title: '优先级',
+                field: 'payNo',
+                title: '平台订单号',
+                align: 'center'
+            }, {
+                field: 'tradeAmt',
+                align: 'center',
+                title: '订单金额'
+
+            }, {
+                field: 'actualAmt',
+                align: 'center',
+                title: '实际金额'
+
+            }, {
+                field: 'remarks',
+                align: 'center',
+                title: '备注'
+
+            }, {
+                field: 'tradeType',
+                title: '支付类型',
+                align: 'center'
+            },{
+                field: 'payTime',
+                title: '支付时间',
+                align: 'center'
+            }, {
+                field: 'tradeStatus',
+                title: '支付状态',
+                align: 'center'
+            }, {
+                field: 'goodsName',
+                title: '商品名称',
                 align: 'center'
             }
             ],
