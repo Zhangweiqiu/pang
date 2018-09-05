@@ -81,7 +81,7 @@ public class PayController {
 		map.put("tradeType", "ZFBWAP");
 		map.put("tradeAmt", money * 100);
 		map.put("accessPayNo", accessPayNo);
-		map.put("payNotifyUrl", payNotifyUrl);
+//		map.put("payNotifyUrl", payNotifyUrl);
 		map.put("frontBackUrl", frontBackUrl);
 		String url = "http://139.159.133.182:8080/pay/codePayment.do";
 		String sign = Signature.getSign(map, key);
@@ -98,7 +98,7 @@ public class PayController {
 		System.out.println(AESUtil.decrypt(s,key));
 		if(jsonObject.getInteger("code") == 0) {
 			log.debug("请求成功！");
-			payService.savePay(payManInfo);
+//			payService.savePay(payManInfo);
 			System.out.println( jsonObject.getString("htmlUrl"));
 			//res.sendRedirect(jsonObject.getString("htmlUrl"));
 			map = new HashMap<>();
