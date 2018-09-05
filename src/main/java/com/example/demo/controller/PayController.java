@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class PayController {
 	
 	@RequestMapping("/passtopay")
 	public Map<String,Object>  passtopay(@RequestParam(name="name",required=false)String name,
-							 @RequestParam(name="money",required=false)Integer money,
+							 @RequestParam(name="money",required=false)double money,
 							 @RequestParam(name="tell",required=false)String tell,
 							 HttpServletResponse res) throws Exception {
 //		System.out.println(AESUtil.decrypt("69CBC0961EAD88573955DAE7EE6B6DAE4A10D33CC9567AE23B5422A5AC3007165F7AD947348D283E37D3C2F2AE9BE9AF6E073E73D428CB745170AABF6D304F4A2CF63D68C5228C3F86FBAEEF926CE0217F454E6C50F3A9838C4E12BAFBB82AADA7E5989C05CC5A416E4D3855CABF9C8312F63F3B5C3A26FC9E82AA682571A4CF268CCF5892C4D88D1CE485A17FFF44FF4F1C356EFBAEE6A35D6325214230D7D54508A7881C66C4F6C23B3410581A449E8CAFDD49EB7C421CFC15E95A1B5149618C607FDFAA2D3846B8406794F6C3BCBEF327A6C538AD0BD45A46824E516D547B", key));
@@ -62,7 +63,7 @@ public class PayController {
 //		payManInfo.setTradeType(type);
 //		payManInfo.setGoodsName("程峰收款");
 //		payManInfo.setRemarks(type);
-//		payManInfo.setAccessPayNo(accessPayNo);
+		payManInfo.setAccessPayNo(accessPayNo);
 		if(goodsNameService.findOne(1L) != null) {
 			map.put("goodsName", goodsNameService.findOne(1L).getGoodsName());
 		}else
@@ -107,12 +108,34 @@ public class PayController {
 	
 	
 	@RequestMapping("/showPayList")
-	public List<PayManInfo> showPayList() {
-		return payService.showPayList();
+	public JSONObject showPayList(Integer limit, Integer offset) {
+		JSONObject jsonObject = new JSONObject();
+		List<PayManInfo> payManInfoList = payService.showPayList();
+		int sie = limit * offset;
+		List<PayManInfo> payManInfoList1 = new ArrayList<>();
+		if (payManInfoList.size() > sie){
+            System.out.println(limit+"========================="+offset);
+            int k = payManInfoList.size()-sie;
+            if (k > limit)
+                for (int i = 0; i < limit;i++)
+                	payManInfoList1.add(payManInfoList.get(i+sie));
+            else
+                for (int i = 0 ; i < k; i++)
+                	payManInfoList1.add(payManInfoList.get(i+sie));
+        }else{
+            System.out.println(limit+"========================="+offset);
+            int j = limit*(offset);
+            int k = payManInfoList.size() - j;
+            for (int i = 0 ; i < k ; i++)
+            	payManInfoList1.add(payManInfoList.get(i+j));
+        }
+        jsonObject.put("total",payManInfoList.size());
+        jsonObject.put("rows",payManInfoList1);
+        return jsonObject;
 	}
 		
 	@RequestMapping("/payNotify.do")
-	public List<PayManInfo> payNotify(String accessId,String data) {
+	public void payNotify(String accessId,String data) {
 		PayManInfo payManInfo = new PayManInfo();
 		String payNotifyStr = AESUtil.decrypt(data, key);
 		JSONObject jsonObject = JSONObject.parseObject(payNotifyStr);
@@ -120,11 +143,23 @@ public class PayController {
 		payManInfo.setAccessPayNo(jsonObject.getString("accessPayNo"));
 		payManInfo.setPayNo(jsonObject.getString("payNo"));
 		payManInfo.setTradeAmt(jsonObject.getDouble("tradeAmt"));	
-		payManInfo.setActualAmt(jsonObject.getDouble("actualAmt"));
+		payManInfo.setActualAmt(jsonObject.getDouble("actualAmt")* 100);
 		payManInfo.setTradeStatus(jsonObject.getString("tradeStatus"));
 		payManInfo.setPayTime(jsonObject.getDate("payTime"));
 		payManInfo.setTradeType(jsonObject.getString("tradeType"));
-		payService.savePay(payManInfo);
-		return payService.showPayList();
+		boolean ifsucce = payService.savePay1(payManInfo.getPayNo(),
+						   payManInfo.getTradeAmt(),
+						   payManInfo.getActualAmt(),
+						   payManInfo.getTradeStatus(),
+						   payManInfo.getPayTime(),
+						   payManInfo.getTradeType(),
+						   payManInfo.getAccessPayNo());
+		
+		if(ifsucce) {
+			log.debug("数据更新成功！");
+		}
+		else {
+			log.debug("数据更新失败！");
+		}
 	}
 }
