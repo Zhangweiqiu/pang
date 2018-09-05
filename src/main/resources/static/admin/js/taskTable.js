@@ -11,7 +11,8 @@ var TableInit = function () {
     oTableInit.Init = function () {
         $('#taskTable').bootstrapTable({
             url: '/showPayList',
-            method: 'get',                      //请求方式（*）
+            contentType: "application/x-www-form-urlencoded",
+            method: 'post',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -40,10 +41,15 @@ var TableInit = function () {
             columns: [{
                 checkbox: true
             }, {
+                field: 'pid',
+                align: 'center',
+                title: '编号',
+                visible: false
+
+            }, {
                 field: 'name',
                 align: 'center',
-                title: '名字',
-                visible: false
+                title: '名字'
 
             }, {
                 field: 'accessPayNo',
@@ -75,7 +81,7 @@ var TableInit = function () {
             },{
                 field: 'payTime',
                 title: '支付时间',
-                align: 'center'
+                align: 'center'	
             }, {
                 field: 'tradeStatus',
                 title: '支付状态',
@@ -91,6 +97,8 @@ var TableInit = function () {
             }
         });
     };
+   
+
     //得到查询的参数
     oTableInit.queryParams = function (params) {
         var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
@@ -101,3 +109,4 @@ var TableInit = function () {
     };
     return oTableInit;
 }
+
