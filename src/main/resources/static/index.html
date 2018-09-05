@@ -1,130 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> 
-    <title></title>
-    <style>
-        *{
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-        .title{
-            width: 100%;
-            height: 50px;
-            margin-top: 20px;
-        }
-        #title{
-            width: 65%;
-            height:  50px;
-            line-height:  50px;
-            margin: 0px auto;
-            text-align: center;
-            font-size: 30px;
-        }
-        .form{
-            width: 100%;
-        }
-        .item{
-            width: 75%;
-            height: 140px;
-            margin: 0px auto;
-            display: flex;
-        }
-        .key{
-            width: 30%;
-            height: 80px;
-            line-height: 80px;
-            text-align: center;
-            font-size: 20px;
-            margin-top: 20px;
-        }
-        .value{
-            width: 65%;
-            height: 80px;
-            line-height: 80px;
-            padding-left: 10px;
-            margin-top: 20px;
-            font-size: 20px;
-        }
-        .value>input{
-            width: 80%;
-            height: 40px;
-        }
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>后台管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <link href="css/index1.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/index.js"></script>
 
-        .value>select{
-            width: 80%;
-            height: 40px;
-        }
-        .value>textarea{
-            width: 80%;
-            height: 80px;
-        }
-        .footer{
-            width: 100%;
-            height: 80px;
-            margin-top: 25px;
-        }
 
-        .button{
-            width: 40%;
-            height: 80px;
-            margin: 0px auto;
-            text-align: center;
-        }
-        .button>button{
-            width: 90px;
-            height: 60px;
+    <!-- 弹框样式-->
+    <link rel="stylesheet" href="sweetAlert/dist/sweetalert.css">
+    <script src="sweetAlert/dist/sweetalert.js"></script>
+
+    <style type="text/css">
+        #code
+        {
+            height: 40px;
+            width: 80px;
+            font-family:Arial;
+            font-style:italic;
+            font-weight:bold;
+            border:0;
+            letter-spacing:2px;
+            color:blue;
         }
     </style>
+    <script src="js/jquerysession.js"></script>
 
 </head>
 <body>
-  <div class="title">
-    <div id ="title">
-        <h3>程峰收款</h3>
+
+<h1>后台管理系统<sup>JG 1.0</sup></h1>
+
+<div class="login" style="margin-top:50px;">
+
+    <div class="header">
+        <div class="switch" id="switch"><a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">快速登录</a>
+            <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
+        </div>
     </div>
-  </div>
-  <ul class="form">
-      <li class="item">
-          <div class="key">姓名:</div>
-          <div class="value"><input type="text" id="name"/></div>
-      </li>
-
-      <li class="item">
-          <div class="key">金额:</div>
-          <div class="value"><input type="text" id="money"/></div>
-      </li>
 
 
-      <li class="item">
-          <div class="key">备注:</div>
-          <div class="value"><textarea  rows="3" cols="20"  id="tell"></textarea></div>
-      </li>
+    <div class="web_qr_login" id="web_qr_login" style="display: block; height: 320px;">
 
-  </ul>
+        <!--登录-->
+        <div class="web_login" id="web_login">
 
-  <div class="footer">
-      <div class="button"> <button onclick="tijiao()"> 确认支付</button></div>
-  </div>
+
+            <div class="login-box">
+
+
+                <div class="login_form">
+                    <form  name="loginform" accept-charset="utf-8" id="login_form" >
+                        <div class="uinArea" id="uinArea">
+                            <label class="input-tips" for="acount">帐号：</label>
+                            <div class="inputOuter" id="uArea">
+
+                                <input type="text" id="acount" name="username" class="inputstyle" maxlength="10" />
+                            </div>
+                        </div>
+                        <div class="pwdArea" id="pwdArea">
+                            <label class="input-tips" for="apassword">密码：</label>
+                            <div class="inputOuter" id="pArea">
+
+                                <input type="password" id="apassword" name="p" class="inputstyle"/>
+                            </div>
+                        </div>
+
+                        <div class="pwdArea" id="yzmArea">
+                            <label class="input-tips" for="apassword" style="width: auto">验证码：</label>
+                            <div class="inputOuter" id="yArea">
+                                <input type="password" id="ayzm" name="p" style="width:100px" class="inputstyle" maxlength="4"/>
+                                &nbsp;<input type = "button" id="code" onclick="createCode()"/>
+                            </div>
+
+                        </div>
+
+                        <div style="padding-left:50px;margin-top:20px;"><input type="button" value="登 录" style="width:150px;" onclick="checkUser();"class="button_blue"/></div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+        <!--登录end-->
+    </div>
+
+</div>
 </body>
-<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
-<script type="text/javascript" src="js/jquerysession.js"></script>
-<script type="text/javascript">
-    function tijiao() {
-        $.ajax({
-            url:'/passtopay',
-            type:'post',
-            data:{name:$("#name").val(),money:$("#money").val(),tell:$("#tell").val()},
-            dataType:'Json',
-            success:function (result) {
-                if ("" != result.re ||  null != result.re) {
-                    location.href = result.re;
-                }
-            }
-        })
-    }
 
-</script>
 </html>
