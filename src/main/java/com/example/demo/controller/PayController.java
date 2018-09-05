@@ -36,7 +36,7 @@ public class PayController {
 	PayService payService;
 	
 	@Autowired
-	GoodsNameService goodsNameService;
+	GoodsNameService goodsNameService; 
 	
 	@Value("${payman.accessId}")
     private String accessId;
