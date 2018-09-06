@@ -40,6 +40,8 @@ public class AdministratorController {
 	
 	@RequestMapping("/addkefu")
 	public boolean addkefu(String name){
+		if(kefuRepository.findByKname(name) != null)
+			return false;
 		Kefu kefu = new Kefu();
 		kefu.setKname(name);
 		return kefuService.save(kefu);
@@ -48,6 +50,9 @@ public class AdministratorController {
 	@RequestMapping("/addAdmin")
 	public boolean addAdmin(String name,String aid){
 	    Administor administor = new Administor();
+	    if(administratorRepository.findByUcount(aid).get() != null) {
+	    	return false;
+	    }
 	    administor.setUname(name);
 	    administor.setUcount(aid);
 	    administor.setUpassword("123456");

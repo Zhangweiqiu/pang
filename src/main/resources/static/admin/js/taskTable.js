@@ -82,6 +82,10 @@ var TableInit = function () {
                 field: 'goodsName',
                 title: '商品名称',
                 align: 'center'
+            }, {
+                field: 'kefu',
+                title: '客服',
+                align: 'center'
             }
             ],
             onDblClickRow:function (row) {

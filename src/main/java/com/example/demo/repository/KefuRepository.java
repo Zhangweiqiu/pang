@@ -16,4 +16,6 @@ public interface KefuRepository extends CrudRepository<Kefu,Integer>{
 	@Query(nativeQuery = true,value = "delete from kefu where kid=?1")
 	Integer deleteByMyId(Integer kid);
 
+	Kefu findByKname(String name);
+
 }
