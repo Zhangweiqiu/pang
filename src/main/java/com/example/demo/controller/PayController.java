@@ -150,7 +150,7 @@ public class PayController {
         return jsonObject;
 	}	
 	
-	@RequestMapping("/showPayListByKefu") 
+	@RequestMapping("/showPayListByKefu")
 	public JSONObject showPayListByKefu(Integer limit, Integer offset,String kefu) {
 		JSONObject jsonObject = new JSONObject();
 		List<PayManInfo> payManInfoList = payService.showPayListByKefu(kefu);
