@@ -97,6 +97,13 @@
                 <div class="text">支付金额<span>*</span>:<span id="z"></span></div>
                 <input  type="text"  class="input" id="money" placeholder="请输入支付金额"/>
             </div>
+
+            <div class="list">
+                <div class="text">支付金额<span>*</span>:</div>
+                <select id="kf">
+
+                </select>
+            </div>
             <div class="list" style="height: 120px">
                 <div class="text">备注:</div>
                 <textarea rows="3" cols="20"   class="input" style="height: 60px" id="tell"></textarea>
@@ -112,6 +119,30 @@
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 <script type="text/javascript" src="js/jquerysession.js"></script>
 <script type="text/javascript">
+    var option ;
+
+    $(function () {
+
+        $.ajax({
+            url:"/getKefus",
+            type:"post",
+            data:{},
+            dataType:'Json',
+            success:function (data) {
+                if (data.leng > 0) {
+                    for (var i = 0 ; i < data.leng; i++){
+                        option += "<option value = '" + data.list[i].kid+"'>" + data.list[i].kname +"</option>";
+                    }
+                    $("#kf").html(option);
+                }else {
+                    option += "<option value = '" + ""+"'>" + 暂无可选客服+"</option>";
+                }
+            }
+        })
+
+    })
+
+
     function tijiao() {
         var name = $("#name").val();
         var money = $("#money").val();
@@ -128,7 +159,7 @@
         $.ajax({
             url:'/passtopay',
             type:'post',
-            data:{name:name,money:money,tell:$("#tell").val()},
+            data:{name:name,money:money,tell:$("#tell").val(),kefu:$("#kf").val()},
             dataType:'Json',
             success:function (result) {
                 //abc = result.accessPayNo;
