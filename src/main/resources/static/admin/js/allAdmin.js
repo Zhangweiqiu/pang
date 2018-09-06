@@ -118,7 +118,6 @@ function  DeleteAdminByIds(value) {
         },
         function(isConfirm){
             if (isConfirm) {
-                alert(123);
                 $.ajax({
                     url: '/deleteAdmin',
                     type: 'get',
