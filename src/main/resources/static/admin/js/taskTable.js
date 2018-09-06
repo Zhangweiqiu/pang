@@ -79,10 +79,6 @@ var TableInit = function () {
                 title: '支付时间',
                 align: 'center'	
             }, {
-                field: 'tradeStatus',
-                title: '支付状态',
-                align: 'center'
-            }, {
                 field: 'goodsName',
                 title: '商品名称',
                 align: 'center'
