@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +33,7 @@ public class AdministratorService {
 	}
 
 	public List<Administor> showAdminList() {
-		List<Administor> adminList = Lists.newArrayList();
+		List<Administor> adminList = new ArrayList();
 	    Iterable<Administor> adminIterable = administratorRepository.findAll();
 		adminIterable.forEach(single ->{adminList.add(single);});
 		return adminList;

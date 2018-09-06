@@ -1,12 +1,11 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.pojo.Administor;
 import com.example.demo.pojo.Kefu;
 import com.example.demo.repository.KefuRepository;
 
@@ -24,7 +23,7 @@ public class KefuService {
 	}
 
 	public List<Kefu> showKefuList() {
-		List<Kefu> KefuList = Lists.newArrayList();
+		List<Kefu> KefuList = new ArrayList();
 	    Iterable<Kefu> KefuIterable = kefuRepository.findAll();
 	    KefuIterable.forEach(single ->{KefuList.add(single);});
 		return KefuList;

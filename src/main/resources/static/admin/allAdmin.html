@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增加管理员</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap-table.min.css">
+
+    <!-- 弹框样式-->
+    <link rel="stylesheet" href="../sweetAlert/dist/sweetalert.css">
+
+    <style>
+        .my-container {
+            float: left;
+            display: inline-block;
+            margin-right:30px;
+        }
+
+        .myLabel-content ,.myText-content,.myBtn-content{
+            float: left;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .myLabel-content,.myText-content input[type='text'],.myBtn-content .btn {
+            height: 30px;
+            font-size: 12px;
+        }
+        .myBtn-content .btn {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="span9">
+                    <form>
+                        <fieldset>
+                            <legend>修改权限</legend>
+                            <p id = "tid" hidden></p>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label>编号:</label>
+                                </div>
+                                <input type="text" id="tl" readonly/>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label>账号:</label>
+                                </div>
+                                <input type="text" id="tn" readonly/><br>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label>姓名:</label>
+                                </div>
+                                <input type="text" id="ts" readonly/><br>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="changTask">增加</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="box round first grid">
+    <div class="block">
+        <div class="wrapper">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        管理员列表
+                        <small>上层</small>
+                    </h1>
+                </section>
+            </div>
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="taskTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="../bootstrap/js/jquery-3.1.0.min.js"></script>
+<script src="../bootstrap/js/jquerysession.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../bootstrap/js/bootstrap-table.min.js"></script>
+<script src="../js/mJs/common.js"></script>
+<script src="../sweetAlert/dist/sweetalert.js"></script>
+<script src="js/allAdmin.js"></script>
+
+
+</html>
