@@ -75,10 +75,6 @@ var TableInit = function () {
                 title: '备注'
 
             }, {
-                field: 'tradeType',
-                title: '支付类型',
-                align: 'center'
-            },{
                 field: 'payTime',
                 title: '支付时间',
                 align: 'center'	
