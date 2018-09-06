@@ -10,7 +10,7 @@ var TableInit = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('#taskTable').bootstrapTable({
-            url: '/admin?method=seeAdmin',
+            url: '/showKefuList',
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -81,7 +81,7 @@ function operateFormatter(value, row, index) {
     //     '<a class="remove" href="javascript:void(0)" title="Remove">',
     //     '<i class="glyphicon glyphicon-remove"></i>',
     //     '</a>'].join('');
-    var id = row.ucount;
+    var id = row.kid;
     var result = "";
 //    result += "<a href='javascript:;'  onclick=\"EditAdminById('" + id + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a> &nbsp;| &nbsp;";
     result += "<a href='javascript:;'  onclick=\"DeleteAdminByIds('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
@@ -89,22 +89,6 @@ function operateFormatter(value, row, index) {
     return result;
 }
 
-
-function EditAdminById(id) {
-    $.ajax({
-        url:'/admin?method=myinfo',
-        type:'get',
-        dataType:'json',
-        data:{mycount:id},
-        success:function (data) {
-            $("#tl").val(data.uid);
-            $("#tn").val(data.ucount);
-            $("#ts").val(data.uname);
-            $("#tp").val(data.role);
-        }
-    });
-    $('#myModal').modal('show');
-}
 
 function  DeleteAdminByIds(value) {
     swal({
@@ -121,7 +105,7 @@ function  DeleteAdminByIds(value) {
         function(isConfirm){
             if (isConfirm) {
                 $.ajax({
-                    url: '/admin?method=deleteAdmin',
+                    url: '/deleteKefu',
                     type: 'get',
                     dataType: 'json',
                     data: {mycount: value},

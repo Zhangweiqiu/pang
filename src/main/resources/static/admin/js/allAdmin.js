@@ -79,7 +79,7 @@ var TableInit = function () {
 }
 
 function operateFormatter(value, row, index) {
-    var id = row.ucount;
+    var id = row.uid;
     var result = "";
   //  result += "<a href='javascript:;'  onclick=\"EditAdminById('" + id + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a> &nbsp;| &nbsp;";
     result += "<a href='javascript:;'  onclick=\"DeleteAdminByIds('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
