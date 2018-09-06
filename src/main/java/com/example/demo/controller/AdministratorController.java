@@ -50,7 +50,7 @@ public class AdministratorController {
 	@RequestMapping("/addAdmin")
 	public boolean addAdmin(String name,String aid){
 	    Administor administor = new Administor();
-	    if(administratorRepository.findByUcount(aid).get() != null) {
+	    if(administratorRepository.findByUcount(aid).isPresent()) {
 	    	return false;
 	    }
 	    administor.setUname(name);
