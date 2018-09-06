@@ -72,7 +72,7 @@ public class KefuController {
 		Map<String,Object> map = new HashMap<>();
 		List<Kefu> list = kefuService.showKefuList();
 		map.put("list", list);
-		map.put("size", list.size());
+		map.put("leng", list.size());
 		return map;
 	}
 }
