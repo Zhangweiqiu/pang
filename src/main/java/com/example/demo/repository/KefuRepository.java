@@ -13,7 +13,7 @@ public interface KefuRepository extends CrudRepository<Kefu,Integer>{
 
 	@Modifying
 	@Transactional
-	@Query(nativeQuery = true,value = "delete from kefu where pid=?1")
-	Integer deleteByMyId(Integer pid);
+	@Query(nativeQuery = true,value = "delete from kefu where kid=?1")
+	Integer deleteByMyId(Integer kid);
 
 }
