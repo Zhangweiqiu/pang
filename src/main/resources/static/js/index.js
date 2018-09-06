@@ -67,6 +67,7 @@ function checkUser() {
         dataType:'json',
         success:function (data) {
             if(data.states){
+                sessionStorage.setItem("role",data.role);
                     window.location.href = "/admin/index.html";
             }else{
                 swal({
