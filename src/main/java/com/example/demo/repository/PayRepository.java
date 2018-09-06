@@ -17,6 +17,10 @@ public interface PayRepository extends CrudRepository<PayManInfo,Long>{
 	@Modifying
 	@Query(nativeQuery = true,value = "SELECT   *   FROM   pay_man_info where trade_status='1' order by  pay_time")  
 	List<PayManInfo> findMyAll();
+	
+	@Modifying
+	@Query(nativeQuery = true,value = "SELECT   *   FROM   pay_man_info where trade_status='1' and kefu=?1 order by  pay_time")  
+	List<PayManInfo> findMyAllByKefu(String kefu);
 
 	@Modifying
 	@Transactional

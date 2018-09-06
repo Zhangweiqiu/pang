@@ -36,6 +36,10 @@ public class PayService {
 	public List<PayManInfo> showPayList(){
 		return payRepository.findMyAll();
 	}
+	
+	public List<PayManInfo> showPayListByKefu(String kefu){
+		return payRepository.findMyAllByKefu(kefu);
+	}
 
 
 	public Map<String ,Object> isPay(String accessPayNo){

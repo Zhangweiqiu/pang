@@ -150,6 +150,34 @@ public class PayController {
         return jsonObject;
 	}	
 	
+	@RequestMapping("/showPayListByKefu")
+	public JSONObject showPayListByKefu(Integer limit, Integer offset,String kefus) {
+		JSONObject jsonObject = new JSONObject();
+		List<PayManInfo> payManInfoList = payService.showPayListByKefu(kefus);
+		int sie = limit * offset;
+		List<PayManInfo> payManInfoList1 = new ArrayList<>();
+		if (payManInfoList.size() > sie){
+            System.out.println(limit+"========================="+offset);
+            int k = payManInfoList.size()-sie;
+            if (k > limit)
+                for (int i = 0; i < limit;i++)
+                	payManInfoList1.add(payManInfoList.get(i+sie));
+            else
+                for (int i = 0 ; i < k; i++)
+                	payManInfoList1.add(payManInfoList.get(i+sie));
+        }else{
+            System.out.println(limit+"========================="+offset);
+            int j = limit*(offset);
+            int k = payManInfoList.size() - j;
+            for (int i = 0 ; i < k ; i++)
+            	payManInfoList1.add(payManInfoList.get(i+j));
+        }
+        jsonObject.put("total",payManInfoList.size());
+        jsonObject.put("rows",payManInfoList1);
+        
+        return jsonObject;
+	}
+	
 	@RequestMapping("/payNotify.do")
 	public void payNotify(@RequestParam(name="accessId",required=false)String accessId,
 						  @RequestParam(name="data",required=false)String data,
