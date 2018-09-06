@@ -1,16 +1,3 @@
-$(function () {
-    var mycount = sessionStorage.getItem("mycount");
-    $.ajax({
-        url:"/admin?method=myinfo",
-        type:'get',
-        data:{mycount:mycount},
-        dataType:'Json',
-        success:function (result) {
-            $("#mycount").val(result.ucount);
-            $("#mynames").val(result.uname);
-        }
-    })
-})
 
 
 function changeInfo() {
