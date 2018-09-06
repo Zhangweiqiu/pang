@@ -120,7 +120,7 @@
 <script type="text/javascript" src="js/jquerysession.js"></script>
 <script type="text/javascript">
     var option ;
-
+     var nu = "暂无可选客服";
     $(function () {
 
         $.ajax({
@@ -135,7 +135,7 @@
                     }
                     $("#kf").html(option);
                 }else {
-                    option += "<option value = '" + ""+"'>" + 暂无可选客服+"</option>";
+                    option += "<option value = '" + ""+"'>" + nu+"</option>";
                 }
             }
         })
