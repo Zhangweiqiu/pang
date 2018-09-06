@@ -1,12 +1,10 @@
 $(function () {
 
-    var apert = sessionStorage.getItem('apart');
-    var myname = sessionStorage.getItem('myname');
-    var mycount = sessionStorage.getItem('mycount');
-    if (myname ==null&& mycount == null) {
+    var role = sessionStorage.getItem('role');
+    if (role ==null&& role == "") {
         window.location.href = "../../index.html";
+    }else if (role == "super") {
+            $("#admin").show();
     }
-    document.getElementById("apart").innerHTML = '上一次登录时间: '+apert +' hours ago';
-    document.getElementById("myname").innerHTML = 'Hello ' + myname;
-    $("#containers").load('./Mychart.html');
+    document.getElementById("myname").innerHTML = 'Hello ' + role;
 });

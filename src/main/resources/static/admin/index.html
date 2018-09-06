@@ -62,10 +62,15 @@
         <div class="box sidemenu">
             <div class="block" id="section-menu">
                 <ul class="section menu">
-                    <li><a class="menuitem">订单</a>
+                    <li><a class="menuitem">订单管理</a>
                         <ul class="submenu">
                             <li><a href="javascript:load('./TaskTable.html')">订单记录</a> </li>
                             <li><a href="javascript:load('./myinfo.html')">修改标题</a> </li>
+                        </ul>
+                    </li>
+                    <li id="admin" style="display: none"><a class="menuitem">管理员管理</a>
+                        <ul class="submenu">
+                            <li><a href="javascript:load('./allAdmin.html')">管理员列表</a> </li>
                         </ul>
                     </li>
                 </ul>
@@ -86,4 +91,5 @@
 </body>
 <script  src="../js/jquerysession.js"></script>
 <script src="../js/mJs/common.js"></script>
+<script src="js/index.js"></script>
 </html>
