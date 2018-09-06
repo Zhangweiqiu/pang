@@ -29,6 +29,9 @@ public class AdministratorController {
 	@Autowired
 	KefuService kefuService;
 	
+	@Autowired
+	KefuRepository kefuRepository;
+	
 	@RequestMapping("/login")
 	public Map<String,Object> checklogin(String aid, String password){
 		Map<String,Object> map = administratorService.checklogin(aid, password);
@@ -51,6 +54,14 @@ public class AdministratorController {
 	    administor.setRole("normal");
 	    if(administratorRepository.save(administor) != null) {
 	    	return true;
+		}else
+			return false;
+	}
+	
+	@RequestMapping("/deleteAdmin")
+	public boolean deleteAdmin(Integer uid) {
+		if(administratorRepository.deleteByMyId(uid) == 1) {
+			return true;
 		}else
 			return false;
 	}
@@ -110,5 +121,13 @@ public class AdministratorController {
         
         return jsonObject;
 	}	
+	
+	@RequestMapping("/deleteKefu")
+	public boolean deleteKefu(Integer pid) {
+		if(kefuRepository.deleteByMyId(pid) == 1) {
+			return true;
+		}else
+			return false;
+	}
 
 }

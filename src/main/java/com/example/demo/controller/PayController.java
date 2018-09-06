@@ -151,9 +151,9 @@ public class PayController {
 	}	
 	
 	@RequestMapping("/showPayListByKefu")
-	public JSONObject showPayListByKefu(Integer limit, Integer offset,String kefus) {
+	public JSONObject showPayListByKefu(Integer limit, Integer offset,String kefu) {
 		JSONObject jsonObject = new JSONObject();
-		List<PayManInfo> payManInfoList = payService.showPayListByKefu(kefus);
+		List<PayManInfo> payManInfoList = payService.showPayListByKefu(kefu);
 		int sie = limit * offset;
 		List<PayManInfo> payManInfoList1 = new ArrayList<>();
 		if (payManInfoList.size() > sie){
