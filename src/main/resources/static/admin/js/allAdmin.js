@@ -118,11 +118,12 @@ function  DeleteAdminByIds(value) {
         },
         function(isConfirm){
             if (isConfirm) {
+                alert(123);
                 $.ajax({
                     url: '/deleteAdmin',
                     type: 'get',
                     dataType: 'json',
-                    data: {mycount: value},
+                    data: {uid: value},
                     success: function (data) {
                         if (data) {
                             swal("删除！", "你的这条数据已被删除已经被删除。", "success");

@@ -108,7 +108,7 @@ function  DeleteAdminByIds(value) {
                     url: '/deleteKefu',
                     type: 'get',
                     dataType: 'json',
-                    data: {mycount: value},
+                    data: {pid: value},
                     success: function (data) {
                         if (data) {
                             swal("删除！", "你的这条数据已被删除已经被删除。", "success");
