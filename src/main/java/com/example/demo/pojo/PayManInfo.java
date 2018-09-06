@@ -28,12 +28,22 @@ public class PayManInfo {
 	
 	private String payNo;//平台订单号
 	
-	private String tradeStatus;
+	private String tradeStatus; //订单状态 1.成功 0.失败
 	
-	private Date payTime;
+	private Date payTime;//支付时间
 	
-	private String goodsName;
+	private String goodsName;//商品名称
 	
+//	private String kefu;//客服
+	
+//	public String getKefu() {
+//		return kefu;
+//	}
+//
+//	public void setKefu(String kefu) {
+//		this.kefu = kefu;
+//	}
+
 	public String getGoodsName() {
 		return goodsName;
 	}

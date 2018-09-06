@@ -21,6 +21,7 @@ public class AdministratorService {
 		Map<String,Object> map = new HashMap<>();
 		if(administor.get() != null) {
 			if(administor.get().getUpassword().equals(password)) {
+				map.put("role", administor.get().getRole());
 				map.put("states", true);
 				return map;
 			}
