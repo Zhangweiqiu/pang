@@ -34,15 +34,15 @@ public class PayManInfo {
 	
 	private String goodsName;//商品名称
 	
-//	private String kefu;//客服
+	private String kefu;//客服
 	
-//	public String getKefu() {
-//		return kefu;
-//	}
-//
-//	public void setKefu(String kefu) {
-//		this.kefu = kefu;
-//	}
+	public String getKefu() {
+		return kefu;
+	}
+
+	public void setKefu(String kefu) {
+		this.kefu = kefu;
+	}
 
 	public String getGoodsName() {
 		return goodsName;
