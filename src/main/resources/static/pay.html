@@ -132,7 +132,7 @@
             dataType:'Json',
             success:function (result) {
                 abc = result.accessPayNo;
-                setInterval("circulateExecute('"+abc+"')",3000);
+                setInterval("circulateExecute('"+abc+"')",1000);
                 if ("" != result.re ||  null != result.re) {
                     location.href = result.re;
                 }

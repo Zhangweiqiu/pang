@@ -100,7 +100,7 @@ public class PayManInfo {
 		this.name = name;
 	}
 
-	public double getTradeAmt() {
+	public Integer getTradeAmt() {
 		return tradeAmt;
 	}
 
@@ -108,7 +108,7 @@ public class PayManInfo {
 		this.tradeAmt = tradeAmt;
 	}
 
-	public double getActualAmt() {
+	public Integer getActualAmt() {
 		return actualAmt;
 	}
 

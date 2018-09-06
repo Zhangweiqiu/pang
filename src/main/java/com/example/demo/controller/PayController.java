@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import com.example.demo.service.PayService;
 import com.example.demo.util.AESUtil;
 import com.example.demo.util.PostUtil;
 import com.example.demo.util.Signature;
+import com.mysql.fabric.xmlrpc.base.Data;
 
 
 @RestController
@@ -82,7 +84,7 @@ public class PayController {
 		map.put("tradeType", "ZFBWAP");
 		map.put("tradeAmt", money * 100);
 		map.put("accessPayNo", accessPayNo);
-//		map.put("payNotifyUrl", payNotifyUrl);
+		map.put("payNotifyUrl", payNotifyUrl);
 		map.put("frontBackUrl", frontBackUrl);
 		String url = "http://139.159.133.182:8080/pay/codePayment.do";
 		String sign = Signature.getSign(map, key);
@@ -143,20 +145,27 @@ public class PayController {
         jsonObject.put("rows",payManInfoList1);
         
         return jsonObject;
-	}
-		
+	}	
+	
 	@RequestMapping("/payNotify.do")
-	public void payNotify(String accessId,String data) {
+	public void payNotify(@RequestParam(name="accessId",required=false)String accessId,
+						  @RequestParam(name="data",required=false)String data) {
+		System.out.println("11111111");
+		System.out.println(accessId);
+		System.out.println(data);
 		PayManInfo payManInfo = new PayManInfo();
 		String payNotifyStr = AESUtil.decrypt(data, key);
 		JSONObject jsonObject = JSONObject.parseObject(payNotifyStr);
+		System.out.println("22222222222");
+		System.out.println(jsonObject.getString("accessPayNo"));
 		payManInfo.setAccessPayNo(jsonObject.getString("accessPayNo"));
 		payManInfo.setPayNo(jsonObject.getString("payNo"));
 		payManInfo.setTradeAmt(jsonObject.getInteger("tradeAmt"));	
-		payManInfo.setActualAmt(jsonObject.getInteger("actualAmt")* 100);
+		payManInfo.setActualAmt(jsonObject.getInteger("actualAmt"));
 		payManInfo.setTradeStatus(jsonObject.getString("tradeStatus"));
 		payManInfo.setPayTime(jsonObject.getDate("payTime"));
 		payManInfo.setTradeType(jsonObject.getString("tradeType"));
+		System.out.println(payManInfo.getTradeAmt()+"---------");
 		boolean ifsucce = payService.savePay1(payManInfo.getPayNo(),
 						   payManInfo.getTradeAmt(),
 						   payManInfo.getActualAmt(),

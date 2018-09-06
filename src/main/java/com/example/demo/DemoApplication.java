@@ -8,13 +8,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @SpringBootApplication
-public class DemoApplication //extends SpringBootServletInitializer
+public class DemoApplication extends SpringBootServletInitializer
 {
 
-//	@Override
-//    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-//           return application.sources(DemoApplication.class);
-//       }
+	@Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+           return application.sources(DemoApplication.class);
+       }
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);

@@ -24,10 +24,10 @@ public class PayService {
 			return false;
 	}
 	
-	public boolean savePay1(String PayNo, double TradeAmt,double tActualAmt,
+	public boolean savePay1(String PayNo, Integer TradeAmt,Integer tActualAmt,
 							String TradeStatus,Date PayTime,
 						    String TradeType, String access_pay_no) {
-		if(payRepository.saveadd(PayNo,TradeAmt,tActualAmt,TradeStatus,PayTime,TradeType,access_pay_no)) {
+		if(payRepository.saveadd(PayNo,TradeAmt,tActualAmt,TradeStatus,PayTime,TradeType,access_pay_no) == 1) {
 			return true;
 		}else
 			return false;
