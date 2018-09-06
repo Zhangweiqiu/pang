@@ -42,17 +42,17 @@ public class AdministratorController {
 			return false;
 	}
 	
-//	@RequestMapping("/addAdmin")
-//	public boolean addAdmin(String name,String aid, String password){
-//	    Administor administor = new Administor();
-//	    administor.setUname(name);
-//	    administor.setUcount(aid);
-//	    administor.setUpassword(password);
-//	    administor.setRole("normal");
-//	    if(administratorRepository.save(administor) != null) {
-//	    	return true;
-//		}else
-//			return false;
-//	}
+	@RequestMapping("/addAdmin")
+	public boolean addAdmin(String name,String aid, String password){
+	    Administor administor = new Administor();
+	    administor.setUname(name);
+	    administor.setUcount(aid);
+	    administor.setUpassword(password);
+	    administor.setRole("normal");
+	    if(administratorRepository.save(administor) != null) {
+	    	return true;
+		}else
+			return false;
+	}
 
 }
