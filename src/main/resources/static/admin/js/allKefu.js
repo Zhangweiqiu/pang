@@ -10,7 +10,7 @@ var TableInit = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('#taskTable').bootstrapTable({
-            url: '/showAdminList',
+            url: '/admin?method=seeAdmin',
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -40,22 +40,16 @@ var TableInit = function () {
             columns: [{
                 checkbox: true
             }, {
-                field: 'uid',
+                field: 'kid',
                 align: 'center',
                 title: '编号',
-                visible: false
 
             }, {
-                field: 'ucount',
-                align: 'center',
-                title: '账号'
-
-            }, {
-                field: 'uname',
+                field: 'kname',
                 align: 'center',
                 title: '姓名'
 
-            }, {
+            },{
                 field: 'operate',
                 title: '操作',
                 align: 'center',
@@ -72,6 +66,7 @@ var TableInit = function () {
         var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
             limit: params.limit,   //页面大小
             offset: (params.offset / params.limit) ,
+            role:'管理员',
         };
         return temp;
     };
@@ -79,30 +74,37 @@ var TableInit = function () {
 }
 
 function operateFormatter(value, row, index) {
+    // return [
+    //     '<a class="like" href="javascript:void(0)" title="Like">',
+    //     '<i class="fa fa-pencil-square-o"></i>',
+    //     '</a>  ',
+    //     '<a class="remove" href="javascript:void(0)" title="Remove">',
+    //     '<i class="glyphicon glyphicon-remove"></i>',
+    //     '</a>'].join('');
     var id = row.ucount;
     var result = "";
-  //  result += "<a href='javascript:;'  onclick=\"EditAdminById('" + id + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a> &nbsp;| &nbsp;";
+//    result += "<a href='javascript:;'  onclick=\"EditAdminById('" + id + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a> &nbsp;| &nbsp;";
     result += "<a href='javascript:;'  onclick=\"DeleteAdminByIds('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
 
     return result;
 }
 
-//
-// function EditAdminById(id) {
-//     $.ajax({
-//         url:'/admin?method=myinfo',
-//         type:'get',
-//         dataType:'json',
-//         data:{mycount:id},
-//         success:function (data) {
-//             $("#tl").val(data.uid);
-//             $("#tn").val(data.ucount);
-//             $("#ts").val(data.uname);
-//             $("#tp").val(data.role);
-//         }
-//     });
-//     $('#myModal').modal('show');
-// }
+
+function EditAdminById(id) {
+    $.ajax({
+        url:'/admin?method=myinfo',
+        type:'get',
+        dataType:'json',
+        data:{mycount:id},
+        success:function (data) {
+            $("#tl").val(data.uid);
+            $("#tn").val(data.ucount);
+            $("#ts").val(data.uname);
+            $("#tp").val(data.role);
+        }
+    });
+    $('#myModal').modal('show');
+}
 
 function  DeleteAdminByIds(value) {
     swal({
@@ -119,7 +121,7 @@ function  DeleteAdminByIds(value) {
         function(isConfirm){
             if (isConfirm) {
                 $.ajax({
-                    url: '/deleteAdmin',
+                    url: '/admin?method=deleteAdmin',
                     type: 'get',
                     dataType: 'json',
                     data: {mycount: value},

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的信息</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- 弹框样式-->
+    <link rel="stylesheet" href="../sweetAlert/dist/sweetalert.css">
+</head>
+<body >
+<div class="container" style="background-image: url('../img/backimg.jpg');height: 100%;">
+    <div class="page-header">
+        <h2>个人信息
+            <small>酷酷的自己</small>
+        </h2>
+    </div>
+    <div class="row">
+        <form class="form-horizontal" >
+
+            <div class="form-group">
+                <label for="mycount" class="col-sm-2 control-label">账号</label>
+                <div class="col-sm-6" >
+                    <input type="text" class="form-control" id="mycount" placeholder="请输入账号">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="mynames" class="col-sm-2 control-label">姓名</label>
+                <div class="col-sm-6" >
+                    <input type="text" class="form-control" id="mynames" placeholder="请输入名字">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="passwords1" class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-6" >
+                    <input type="password" class="form-control" id="passwords1" placeholder="请输入密码">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="passwords2" class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-6" style="float: left">
+                    <input type="password" class="form-control" id="passwords2" placeholder="请再次输入密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-2" >
+                    <button type="button" class="btn btn-info" onclick="changeInfo();">修改</button>
+                </div>
+
+                <div class="col-sm-4" >
+                    <button type="button" class="btn btn-info" >取消</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+<script src="../bootstrap/js/jquery-3.1.0.min.js"></script>
+<script src="../bootstrap/js/jquerysession.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../sweetAlert/dist/sweetalert.js"></script>
+<script src="../js/mJs/common.js"></script>
+<script src="js/myinfo.js"></script>
+</html>
