@@ -6,7 +6,7 @@ $(function () {
     oTable.Init();
 
 
-
+    option = "";
     $.ajax({
         url:"/getKefus",
         type:"post",
