@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.pojo.GoodsName;
 import com.example.demo.pojo.Kefu;
 import com.example.demo.repository.KefuRepository;
+import com.example.demo.service.GoodsNameService;
 import com.example.demo.service.KefuService;
 
 @RestController
@@ -21,6 +23,9 @@ public class KefuController {
 	
 	@Autowired
 	KefuRepository kefuRepository;
+	
+	@Autowired
+	GoodsNameService goodsNameService;
 	
 	@RequestMapping("/addkefu")
 	public boolean addkefu(String name){
@@ -71,8 +76,10 @@ public class KefuController {
 	public Map<String,Object> getKefus() {
 		Map<String,Object> map = new HashMap<>();
 		List<Kefu> list = kefuService.showKefuList();
+		GoodsName goodsName = goodsNameService.findOne(1);
 		map.put("list", list);
 		map.put("leng", list.size());
+		map.put("title", goodsName.getGoodsName());
 		return map;
 	}
 }

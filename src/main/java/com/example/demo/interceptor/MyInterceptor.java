@@ -18,7 +18,7 @@ public class MyInterceptor implements HandlerInterceptor{
             return true;
         }
 //        跳转到登录页
-        String url = "/index.html";
+        String url = "/admin.html";
         response.sendRedirect(url);
         return false;
     }
