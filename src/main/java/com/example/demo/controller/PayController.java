@@ -228,7 +228,7 @@ public class PayController {
 		if(kefu.equals("0") && !days.equals("0")) {
 			payManInfoList = payService.showPayListByDays(days);
 		}
-		if(!kefu.equals("0") && days.equals("0")) {
+		if(!kefu.equals("0") && days.equals("0")) { 
 			payManInfoList = payService.showPayListByKefu(kefu);
 		}
 		if(!kefu.equals("0") && !days.equals("0")) {
