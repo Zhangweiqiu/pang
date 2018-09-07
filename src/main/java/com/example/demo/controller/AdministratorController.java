@@ -86,7 +86,10 @@ public class AdministratorController {
         
         return jsonObject;
 	}	
-	
-	
 
+	
+	@RequestMapping("/modifyPassword")
+	public boolean modifyPassword(String ucount,String newpassword) {
+		return true;
+	}
 }

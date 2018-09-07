@@ -15,7 +15,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter implements WebMvcConfi
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
-		registry.addInterceptor(new MyInterceptor()).addPathPatterns("/*").excludePathPatterns("/passtopay").excludePathPatterns("/payNotify.do").excludePathPatterns("/login").excludePathPatterns("/admin.html").excludePathPatterns("/index.html").excludePathPatterns("/goBack.html");
+		registry.addInterceptor(new MyInterceptor()).addPathPatterns("/*").excludePathPatterns("/passtopay").excludePathPatterns("/payNotify.do").excludePathPatterns("/login").excludePathPatterns("/getKefus").excludePathPatterns("/admin.html").excludePathPatterns("/index.html").excludePathPatterns("/goBack.html");
 	}
 	
 	 @Override
