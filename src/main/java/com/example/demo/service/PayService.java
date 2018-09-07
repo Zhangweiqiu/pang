@@ -37,11 +37,11 @@ public class PayService {
 		return payRepository.findMyAll();
 	}
 	
-	public List<PayManInfo> showmyPayList(String kefu,String days){
+	public List<PayManInfo> showmyPayList(Integer kefu,String days){
 		return payRepository.findMyNewAll(kefu,days);
 	}
 	
-	public List<PayManInfo> showPayListByKefu(String kefu){
+	public List<PayManInfo> showPayListByKefu(Integer kefu){
 		return payRepository.findMyAllByKefu(kefu);
 	}
 

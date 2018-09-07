@@ -55,7 +55,7 @@ public class PayController {
 	public Map<String,Object>  passtopay(@RequestParam(name="name",required=false)String name,
 							 @RequestParam(name="money",required=false)Integer money,
 							 @RequestParam(name="tell",required=false)String tell,
-							 @RequestParam(name="kefu",required=false)String kefu,
+							 @RequestParam(name="kefu",required=false)Integer kefu,
 							 HttpServletResponse res) throws Exception {
 //		System.out.println(AESUtil.decrypt("69CBC0961EAD88573955DAE7EE6B6DAE4A10D33CC9567AE23B5422A5AC3007165F7AD947348D283E37D3C2F2AE9BE9AF6E073E73D428CB745170AABF6D304F4A2CF63D68C5228C3F86FBAEEF926CE0217F454E6C50F3A9838C4E12BAFBB82AADA7E5989C05CC5A416E4D3855CABF9C8312F63F3B5C3A26FC9E82AA682571A4CF268CCF5892C4D88D1CE485A17FFF44FF4F1C356EFBAEE6A35D6325214230D7D54508A7881C66C4F6C23B3410581A449E8CAFDD49EB7C421CFC15E95A1B5149618C607FDFAA2D3846B8406794F6C3BCBEF327A6C538AD0BD45A46824E516D547B", key));
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -122,61 +122,61 @@ public class PayController {
 	}
 	
 	
-	@RequestMapping("/showPayList")
-	public JSONObject showPayList(Integer limit, Integer offset) {
-		JSONObject jsonObject = new JSONObject();
-		List<PayManInfo> payManInfoList = payService.showPayList();
-		int sie = limit * offset;
-		List<PayManInfo> payManInfoList1 = new ArrayList<>();
-		if (payManInfoList.size() > sie){
-            System.out.println(limit+"========================="+offset);
-            int k = payManInfoList.size()-sie;
-            if (k > limit)
-                for (int i = 0; i < limit;i++)
-                	payManInfoList1.add(payManInfoList.get(i+sie));
-            else
-                for (int i = 0 ; i < k; i++)
-                	payManInfoList1.add(payManInfoList.get(i+sie));
-        }else{
-            System.out.println(limit+"========================="+offset);
-            int j = limit*(offset);
-            int k = payManInfoList.size() - j;
-            for (int i = 0 ; i < k ; i++)
-            	payManInfoList1.add(payManInfoList.get(i+j));
-        }
-        jsonObject.put("total",payManInfoList.size());
-        jsonObject.put("rows",payManInfoList1);
-        
-        return jsonObject;
-	}	
+//	@RequestMapping("/showPayList")
+//	public JSONObject showPayList(Integer limit, Integer offset) {
+//		JSONObject jsonObject = new JSONObject();
+//		List<PayManInfo> payManInfoList = payService.showPayList();
+//		int sie = limit * offset;
+//		List<PayManInfo> payManInfoList1 = new ArrayList<>();
+//		if (payManInfoList.size() > sie){
+//            System.out.println(limit+"========================="+offset);
+//            int k = payManInfoList.size()-sie;
+//            if (k > limit)
+//                for (int i = 0; i < limit;i++)
+//                	payManInfoList1.add(payManInfoList.get(i+sie));
+//            else
+//                for (int i = 0 ; i < k; i++)
+//                	payManInfoList1.add(payManInfoList.get(i+sie));
+//        }else{
+//            System.out.println(limit+"========================="+offset);
+//            int j = limit*(offset);
+//            int k = payManInfoList.size() - j;
+//            for (int i = 0 ; i < k ; i++)
+//            	payManInfoList1.add(payManInfoList.get(i+j));
+//        }
+//        jsonObject.put("total",payManInfoList.size());
+//        jsonObject.put("rows",payManInfoList1);
+//        
+//        return jsonObject;
+//	}	
 	
-	@RequestMapping("/showPayListByKefu") 
-	public JSONObject showPayListByKefu(Integer limit, Integer offset,String kefu) {
-		JSONObject jsonObject = new JSONObject();
-		List<PayManInfo> payManInfoList = payService.showPayListByKefu(kefu);
-		int sie = limit * offset;
-		List<PayManInfo> payManInfoList1 = new ArrayList<>();
-		if (payManInfoList.size() > sie){
-            System.out.println(limit+"========================="+offset);
-            int k = payManInfoList.size()-sie;
-            if (k > limit)
-                for (int i = 0; i < limit;i++)
-                	payManInfoList1.add(payManInfoList.get(i+sie));
-            else
-                for (int i = 0 ; i < k; i++)
-                	payManInfoList1.add(payManInfoList.get(i+sie));
-        }else{
-            System.out.println(limit+"========================="+offset);
-            int j = limit*(offset);
-            int k = payManInfoList.size() - j;
-            for (int i = 0 ; i < k ; i++)
-            	payManInfoList1.add(payManInfoList.get(i+j));
-        }
-        jsonObject.put("total",payManInfoList.size());
-        jsonObject.put("rows",payManInfoList1);
-        
-        return jsonObject;
-	}
+//	@RequestMapping("/showPayList") 
+//	public JSONObject showPayListByKefu(Integer limit, Integer offset,String kefu) {
+//		JSONObject jsonObject = new JSONObject();
+//		List<PayManInfo> payManInfoList = payService.showPayListByKefu(kefu);
+//		int sie = limit * offset;
+//		List<PayManInfo> payManInfoList1 = new ArrayList<>();
+//		if (payManInfoList.size() > sie){
+//            System.out.println(limit+"========================="+offset);
+//            int k = payManInfoList.size()-sie;
+//            if (k > limit)
+//                for (int i = 0; i < limit;i++)
+//                	payManInfoList1.add(payManInfoList.get(i+sie));
+//            else
+//                for (int i = 0 ; i < k; i++)
+//                	payManInfoList1.add(payManInfoList.get(i+sie));
+//        }else{
+//            System.out.println(limit+"========================="+offset);
+//            int j = limit*(offset);
+//            int k = payManInfoList.size() - j;
+//            for (int i = 0 ; i < k ; i++)
+//            	payManInfoList1.add(payManInfoList.get(i+j));
+//        }
+//        jsonObject.put("total",payManInfoList.size());
+//        jsonObject.put("rows",payManInfoList1);
+//        
+//        return jsonObject;
+//	}
 	
 	@RequestMapping("/payNotify.do")
 	public void payNotify(@RequestParam(name="accessId",required=false)String accessId,
@@ -220,7 +220,7 @@ public class PayController {
 	}
 	
 	@RequestMapping("/showMyPayList")
-	public JSONObject showMyPayList(Integer limit, Integer offset,String kefu,String days) {
+	public JSONObject showMyPayList(Integer limit, Integer offset,Integer kefu,String days) {
 		List<PayManInfo> payManInfoList = new ArrayList<>();
 		if(kefu.equals("0") && days.equals("0")) {
 			payManInfoList = payService.showPayList();

@@ -20,8 +20,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter implements WebMvcConfi
 	
 	 @Override
      public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/admin");
-        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        super.addViewControllers(registry);
+	    registry.addViewController("/").setViewName("forward:/admin");
     } 
 }

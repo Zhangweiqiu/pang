@@ -34,13 +34,13 @@ public class PayManInfo {
 	
 	private String goodsName;//商品名称
 	
-	private String kefu;//客服
+	private Integer kefu;//客服
 	
-	public String getKefu() {
+	public Integer getKefu() {
 		return kefu;
 	}
 
-	public void setKefu(String kefu) {
+	public void setKefu(Integer kefu) {
 		this.kefu = kefu;
 	}
 

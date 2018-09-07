@@ -20,7 +20,7 @@ public interface PayRepository extends CrudRepository<PayManInfo,Long>{
 	
 	@Modifying
 	@Query(nativeQuery = true,value = "SELECT   *   FROM   pay_man_info where trade_status='1' and kefu=?1 order by  pay_time")  
-	List<PayManInfo> findMyAllByKefu(String kefu);
+	List<PayManInfo> findMyAllByKefu(Integer kefu);
 
 	@Modifying
 	@Transactional
@@ -31,7 +31,7 @@ public interface PayRepository extends CrudRepository<PayManInfo,Long>{
 
 	@Modifying
 	@Query(nativeQuery = true,value = "SELECT * FROM pay_man_info WHERE trade_status='1' and kefu=?1 AND DATE_SUB(CURDATE(), INTERVAL ?2 DAY) <= DATE(pay_time) order by  pay_time")  
-	List<PayManInfo> findMyNewAll(String kefu,String days);
+	List<PayManInfo> findMyNewAll(Integer kefu,String days);
 
 	@Modifying
 	@Query(nativeQuery = true,value = "SELECT   *   FROM   pay_man_info where trade_status='1' and DATE_SUB(CURDATE(), INTERVAL ?1 DAY) <= DATE(pay_time) order by  pay_time")  
