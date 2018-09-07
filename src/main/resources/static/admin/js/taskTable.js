@@ -1,9 +1,11 @@
-
-
-
 var option ;
 var nu = "==暂无可选客服==";
 $(function () {
+    //1.初始化Table
+    var oTable = new TableInit();
+    oTable.Init();
+
+
 
     $.ajax({
         url:"/getKefus",
@@ -20,18 +22,7 @@ $(function () {
                 option += "<option value = '" + "0"+"'>" + nu+"</option>";
             }
         }
-    })
-
-})
-
-
-
-
-
-$(function () {
-    //1.初始化Table
-    var oTable = new TableInit();
-    oTable.Init();
+    });
 
 });
 
