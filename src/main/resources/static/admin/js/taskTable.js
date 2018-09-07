@@ -29,7 +29,7 @@ var TableInit = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('#taskTable').bootstrapTable({
-            url: '/showPayList',
+            url: '/showMyPayList',
             contentType: "application/x-www-form-urlencoded",
             method: 'post',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
