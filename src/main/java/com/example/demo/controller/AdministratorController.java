@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,8 +28,8 @@ public class AdministratorController {
 	
 	
 	@RequestMapping("/login")
-	public Map<String,Object> checklogin(String aid, String password){
-		Map<String,Object> map = administratorService.checklogin(aid, password);
+	public Map<String,Object> checklogin(String aid, String password,HttpSession session){
+		Map<String,Object> map = administratorService.checklogin(aid, password,session);
 		return map;
 	}
 	

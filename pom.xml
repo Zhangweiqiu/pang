@@ -46,11 +46,11 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
-            </exclusions>-->
+            </exclusions>
 		</dependency>
 		 <dependency>  
             <groupId>javax.servlet</groupId>  
-            <artifactId>javax.servlet-api</artifactId> 
+            <artifactId>javax.servlet-api</artifactId> -->
         </dependency>
 
         <dependency>

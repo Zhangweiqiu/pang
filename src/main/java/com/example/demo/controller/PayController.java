@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -46,9 +47,9 @@ public class PayController {
 	@Value("${payman.key}")
     private String key;
 	
-	private String payNotifyUrl = "http://194.156.157.117/payNotify.do";
+	private String payNotifyUrl = "http://116.62.18.98/payNotify.do";
 	
-	private String frontBackUrl = "http://194.156.157.117/goBack.html";
+	private String frontBackUrl = "http://116.62.18.98/goBack.html";
 	
 	@RequestMapping("/passtopay")
 	public Map<String,Object>  passtopay(@RequestParam(name="name",required=false)String name,
@@ -216,6 +217,46 @@ public class PayController {
 			res.sendRedirect("/goBack.html");
 		}
 		
+	}
+	
+	@RequestMapping("/showMyPayList")
+	public JSONObject showMyPayList(Integer limit, Integer offset,String kefu,String days) {
+		List<PayManInfo> payManInfoList = new ArrayList<>();
+		if(kefu.equals("0") && days.equals("0")) {
+			payManInfoList = payService.showPayList();
+		}
+		if(kefu.equals("0") && !days.equals("0")) {
+			payManInfoList = payService.showPayListByDays(days);
+		}
+		if(!kefu.equals("0") && days.equals("0")) {
+			payManInfoList = payService.showPayListByKefu(kefu);
+		}
+		if(!kefu.equals("0") && !days.equals("0")) {
+			payManInfoList = payService.showmyPayList(kefu,days);
+		}
+		JSONObject jsonObject = new JSONObject();
+		int sie = limit * offset;
+		List<PayManInfo> payManInfoList1 = new ArrayList<>();
+		if (payManInfoList.size() > sie){
+            System.out.println(limit+"========================="+offset);
+            int k = payManInfoList.size()-sie;
+            if (k > limit)
+                for (int i = 0; i < limit;i++)
+                	payManInfoList1.add(payManInfoList.get(i+sie));
+            else
+                for (int i = 0 ; i < k; i++)
+                	payManInfoList1.add(payManInfoList.get(i+sie));
+        }else{
+            System.out.println(limit+"========================="+offset);
+            int j = limit*(offset);
+            int k = payManInfoList.size() - j;
+            for (int i = 0 ; i < k ; i++)
+            	payManInfoList1.add(payManInfoList.get(i+j));
+        }
+        jsonObject.put("total",payManInfoList.size());
+        jsonObject.put("rows",payManInfoList1);
+        
+        return jsonObject;
 	}
 
 	@RequestMapping("/Ispay")

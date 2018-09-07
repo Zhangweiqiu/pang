@@ -9,12 +9,11 @@ spring:
       hibernate:
         hbm2ddl:
           auto: update
-  jmx: 
-    default-domain: agentservice
-endpoints:
-  jmx:
-    domain: agentservice
-    unique-names: true
+server: 
+  servlet:
+    session: 
+      timeout: 5
+           
 payman: 
   key: 795b9e3ac39f44a2a28ce68df1928f60
   accessId: 100435698

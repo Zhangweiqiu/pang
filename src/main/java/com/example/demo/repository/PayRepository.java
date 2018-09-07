@@ -28,4 +28,12 @@ public interface PayRepository extends CrudRepository<PayManInfo,Long>{
 	Integer saveadd(String PayNo,Integer TradeAmt,Integer ActualAmt,String TradeStatus, Date PayTime, String TradeType,String access_pay_no);
 
 	PayManInfo findByAccessPayNo(String accessPayNo);
+
+	@Modifying
+	@Query(nativeQuery = true,value = "SELECT * FROM pay_man_info WHERE trade_status='1' and kefu=?1 AND DATE_SUB(CURDATE(), INTERVAL ?2 DAY) <= DATE(pay_time) order by  pay_time")  
+	List<PayManInfo> findMyNewAll(String kefu,String days);
+
+	@Modifying
+	@Query(nativeQuery = true,value = "SELECT   *   FROM   pay_man_info where trade_status='1' and DATE_SUB(CURDATE(), INTERVAL ?1 DAY) <= DATE(pay_time) order by  pay_time")  
+	List<PayManInfo> showPayListByDays(String days);
 }

@@ -37,6 +37,10 @@ public class PayService {
 		return payRepository.findMyAll();
 	}
 	
+	public List<PayManInfo> showmyPayList(String kefu,String days){
+		return payRepository.findMyNewAll(kefu,days);
+	}
+	
 	public List<PayManInfo> showPayListByKefu(String kefu){
 		return payRepository.findMyAllByKefu(kefu);
 	}
@@ -52,5 +56,9 @@ public class PayService {
 					map.put("state", true);
 		System.out.println("==================================");
 			return map;
+	}
+
+	public List<PayManInfo> showPayListByDays(String days) {
+		return payRepository.showPayListByDays(days);
 	}
 }
