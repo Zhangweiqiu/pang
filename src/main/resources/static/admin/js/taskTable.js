@@ -135,7 +135,7 @@ var TableInit = function () {
 
 
 function about() {
-    $("#mytable").bootstrapTable('refresh');
+    $("#taskTable").bootstrapTable('refresh');
 }
 
 
