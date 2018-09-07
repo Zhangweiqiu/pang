@@ -85,7 +85,7 @@
     <div class="all">
         <div class="container">
             <div class="img">
-                <div class="title"> 程峰收款</div>
+                <div class="title" id="tit"> </div>
             </div>
 
             <div class="list">
@@ -137,6 +137,7 @@
                 }else {
                     option += "<option value = '" + ""+"'>" + nu+"</option>";
                 }
+                $("#tit").text(data.title);
             }
         })
 
