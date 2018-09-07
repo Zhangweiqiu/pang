@@ -1,7 +1,6 @@
 var option = "";
 var nu = "==暂无可选客服==";
 $(function () {
-
     $.ajax({
         url:"/getKefus",
         type:"get",
