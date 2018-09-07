@@ -133,10 +133,11 @@
                     for (var i = 0 ; i < data.leng; i++){
                         option += "<option value = '" + data.list[i].kid+"'>" + data.list[i].kname +"</option>";
                     }
-                    $("#kf").html(option);
+
                 }else {
-                    option += "<option value = '" + ""+"'>" + nu+"</option>";
+                    option += "<option value = '" + "0"+"'>" + nu+"</option>";
                 }
+                $("#kf").html(option);
                 $("#tit").text(data.title);
             }
         })

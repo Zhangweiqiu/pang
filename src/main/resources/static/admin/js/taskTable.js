@@ -1,10 +1,6 @@
 var option ;
 var nu = "==暂无可选客服==";
 $(function () {
-    //1.初始化Table
-    var oTable = new TableInit();
-    oTable.Init();
-
 
     option = "";
     $.ajax({
@@ -17,13 +13,15 @@ $(function () {
                 for (var i = 0 ; i < data.leng; i++){
                     option += "<option value = '" + data.list[i].kid+"'>" + data.list[i].kname +"</option>";
                 }
-                $("#msgType").html(option);
             }else {
                 option += "<option value = '" + "0"+"'>" + nu+"</option>";
             }
         }
     });
-
+    $("#msgType").html(option);
+    //1.初始化Table
+    var oTable = new TableInit();
+    oTable.Init();
 });
 
 var TableInit = function () {
