@@ -222,16 +222,16 @@ public class PayController {
 	@RequestMapping("/showMyPayList")
 	public JSONObject showMyPayList(Integer limit, Integer offset,Integer kefu,String days) {
 		List<PayManInfo> payManInfoList = new ArrayList<>();
-		if(kefu.equals("0") && days.equals("0")) {
+		if(kefu == 0 && days.equals("0")) {
 			payManInfoList = payService.showPayList();
 		}
-		if(kefu.equals("0") && !days.equals("0")) {
+		if(kefu == 0 && !days.equals("0")) {
 			payManInfoList = payService.showPayListByDays(days);
 		}
-		if(!kefu.equals("0") && days.equals("0")) { 
+		if(kefu != 0 && days.equals("0")) { 
 			payManInfoList = payService.showPayListByKefu(kefu);
 		}
-		if(!kefu.equals("0") && !days.equals("0")) {
+		if(kefu != 0 && !days.equals("0")) {
 			payManInfoList = payService.showmyPayList(kefu,days);
 		}
 		JSONObject jsonObject = new JSONObject();
