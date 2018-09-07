@@ -2,7 +2,7 @@ $(function () {
 
     var role = sessionStorage.getItem('role');
     if (role == null || role == "") {
-        window.location.href = "../../index.html";
+        window.location.href = "../../admin.html";
     }else if (role == "super") {
             $("#admin").show();
     }

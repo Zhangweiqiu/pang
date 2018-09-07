@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>后台管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <link href="css/index1.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/index.js"></script>
+
+
+    <!-- 弹框样式-->
+    <link rel="stylesheet" href="sweetAlert/dist/sweetalert.css">
+    <script src="sweetAlert/dist/sweetalert.js"></script>
+
+    <style type="text/css">
+        #code
+        {
+            height: 40px;
+            width: 80px;
+            font-family:Arial;
+            font-style:italic;
+            font-weight:bold;
+            border:0;
+            letter-spacing:2px;
+            color:blue;
+        }
+    </style>
+    <script src="js/jquerysession.js"></script>
+
+</head>
+<body>
+
+<h1>后台管理系统<sup>JG 1.0</sup></h1>
+
+<div class="login" style="margin-top:50px;">
+
+    <div class="header">
+        <div class="switch" id="switch"><a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">快速登录</a>
+            <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
+        </div>
+    </div>
+
+
+    <div class="web_qr_login" id="web_qr_login" style="display: block; height: 320px;">
+
+        <!--登录-->
+        <div class="web_login" id="web_login">
+
+
+            <div class="login-box">
+
+
+                <div class="login_form">
+                    <form  name="loginform" accept-charset="utf-8" id="login_form" >
+                        <div class="uinArea" id="uinArea">
+                            <label class="input-tips" for="acount">帐号：</label>
+                            <div class="inputOuter" id="uArea">
+
+                                <input type="text" id="acount" name="username" class="inputstyle" maxlength="10" />
+                            </div>
+                        </div>
+                        <div class="pwdArea" id="pwdArea">
+                            <label class="input-tips" for="apassword">密码：</label>
+                            <div class="inputOuter" id="pArea">
+
+                                <input type="password" id="apassword" name="p" class="inputstyle"/>
+                            </div>
+                        </div>
+
+                        <div class="pwdArea" id="yzmArea">
+                            <label class="input-tips" for="apassword" style="width: auto">验证码：</label>
+                            <div class="inputOuter" id="yArea">
+                                <input type="password" id="ayzm" name="p" style="width:100px" class="inputstyle" maxlength="4"/>
+                                &nbsp;<input type = "button" id="code" onclick="createCode()"/>
+                            </div>
+
+                        </div>
+
+                        <div style="padding-left:50px;margin-top:20px;"><input type="button" value="登 录" style="width:150px;" onclick="checkUser();"class="button_blue"/></div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+        <!--登录end-->
+    </div>
+
+</div>
+</body>
+
+</html>
