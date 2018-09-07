@@ -12,7 +12,7 @@ spring:
 server: 
   servlet:
     session: 
-      timeout: 5
+      timeout: 30
            
 payman: 
   key: 795b9e3ac39f44a2a28ce68df1928f60

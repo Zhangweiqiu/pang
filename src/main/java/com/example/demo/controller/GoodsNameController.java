@@ -23,4 +23,5 @@ public class GoodsNameController {
 	    }else
 	    	return false;
 	}
+	
 }
