@@ -1,3 +1,33 @@
+
+
+
+var option ;
+var nu = "==暂无可选客服==";
+$(function () {
+
+    $.ajax({
+        url:"/getKefus",
+        type:"post",
+        data:{},
+        dataType:'Json',
+        success:function (data) {
+            if (data.leng > 0) {
+                for (var i = 0 ; i < data.leng; i++){
+                    option += "<option value = '" + data.list[i].kid+"'>" + data.list[i].kname +"</option>";
+                }
+                $("#msgType").html(option);
+            }else {
+                option += "<option value = '" + "0"+"'>" + nu+"</option>";
+            }
+        }
+    })
+
+})
+
+
+
+
+
 $(function () {
     //1.初始化Table
     var oTable = new TableInit();
@@ -103,11 +133,20 @@ var TableInit = function () {
         var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
             limit: params.limit,   //页面大小
             offset: (params.offset / params.limit) ,
+            kefu:$("#msgType").val(),
+            days:$("#msgTypes").val(),
         };
         return temp;
     };
     return oTableInit;
 }
+
+
+
+function about() {
+    $("#mytable").bootstrapTable('refresh');
+}
+
 
 
 //转换日期格式(时间戳转换为datetime格式)
