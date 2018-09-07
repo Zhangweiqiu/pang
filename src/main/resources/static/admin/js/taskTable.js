@@ -1,27 +1,29 @@
-var option ;
+var option = "";
 var nu = "==暂无可选客服==";
 $(function () {
 
-    option = "";
     $.ajax({
         url:"/getKefus",
-        type:"post",
+        type:"get",
         data:{},
         dataType:'Json',
         success:function (data) {
+            option ="<option value = '" + "0"+"'>" + "====请选择客服===="+"</option>";
             if (data.leng > 0) {
                 for (var i = 0 ; i < data.leng; i++){
                     option += "<option value = '" + data.list[i].kid+"'>" + data.list[i].kname +"</option>";
                 }
             }else {
-                option += "<option value = '" + "0"+"'>" + nu+"</option>";
+                option ="<option value = '" + "0"+"'>" + nu+"</option>";
             }
+            $("#msgType").append(option);
         }
     });
-    $("#msgType").html(option);
+
     //1.初始化Table
     var oTable = new TableInit();
     oTable.Init();
+
 });
 
 var TableInit = function () {
