@@ -13,7 +13,6 @@ public class MyInterceptor implements HandlerInterceptor{
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) throws IOException {
         HttpSession session = request.getSession();
 //        判断是否已有该用户登录的session
-        System.out.println("123123123123123");
         if(session.getAttribute("ucount") != null){
             return true;
         }
