@@ -165,8 +165,8 @@
             dataType:'Json',
             success:function (result) {
                 abc = result.accessPayNo;
-                sessionStorage.setItem("accessPayNo",abc);
                 setInterval("circulateExecute('"+abc+"')",1000);
+                setInterval("ttt()",1000);
                 if ("" != result.re ||  null != result.re) {
                     location.href = result.re;
                 }
@@ -182,10 +182,16 @@
             typeType:'json',
             data:{accessPayNo:accessPayNo},
             success:function (result) {
+                sessionStorage.setItem("state",true);
                 if (result.state)
                     location.href = './goBack.html';
             }
         });
+    }
+
+    function ttt() {
+        if (sessionStorage.getItem("state"))
+            location.href = './goBack.html';
     }
 
 </script>
