@@ -2,17 +2,23 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/pms?useUnicode=true&characterEncoding=UTF-8
-    username: root
+    username: pms
     password: root
   jpa:
     properties:
       hibernate:
         hbm2ddl:
           auto: update
+  jmx: 
+    default-domain: agentservice
+endpoints:
+  jmx:
+    domain: agentservice
+    unique-names: true
 server: 
   servlet:
     session: 
-      timeout: 30
+      timeout: 1800
            
 payman: 
   key: 795b9e3ac39f44a2a28ce68df1928f60

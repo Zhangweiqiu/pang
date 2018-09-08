@@ -212,10 +212,10 @@ public class PayController {
 		else {
 			log.debug("数据更新失败！");
 		}
-		if(jsonObject.getString("tradeStatus").equals("1")) {
-			res.setCharacterEncoding("utf-8");
-			res.sendRedirect("/goBack.html");
-		}
+//		if(jsonObject.getString("tradeStatus").equals("1")) {
+//			res.setCharacterEncoding("utf-8");
+//			res.sendRedirect("/goBack.html");
+//		}
 		
 	}
 	

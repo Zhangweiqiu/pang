@@ -164,8 +164,9 @@
             data:{name:name,money:money,tell:$("#tell").val(),kefu:$("#kf").val()},
             dataType:'Json',
             success:function (result) {
-                //abc = result.accessPayNo;
-                //setInterval("circulateExecute('"+abc+"')",1000);
+                abc = result.accessPayNo;
+                sessionStorage.setItem("accessPayNo",abc);
+                setInterval("circulateExecute('"+abc+"')",1000);
                 if ("" != result.re ||  null != result.re) {
                     location.href = result.re;
                 }
@@ -174,11 +175,12 @@
     }
 
     function  circulateExecute(a) {
+    	var accessPayNo = sessionStorage.getItem('accessPayNo');
         $.ajax({
             url:'Ispay',
             type:'get',
             typeType:'json',
-            data:{accessPayNo:a},
+            data:{accessPayNo:accessPayNo},
             success:function (result) {
                 if (result.state)
                     location.href = './goBack.html';
