@@ -21,12 +21,13 @@ $(function () {
 
 
     var t = $("#msgType").val();
+    var t = $("#msgType").val();
     if (t == null || t == "")
         t = 0;
     $.ajax({
-        url:"/showMoney",
+        url:"/showMoneny",
         type:"get",
-        data:{kid:t},
+        data:{kefu:t,days:$("#msgTypes").val()},
         dataType:"json",
         success:function (data) {
             $("#totl").text(data);
@@ -104,11 +105,6 @@ var TableInit = function () {
                 title: '实际金额'
 
             }, {
-                field: 'remarks',
-                align: 'center',
-                title: '备注'
-
-            }, {
                 field: 'payTime',
                 title: '支付时间',
                 align: 'center',
@@ -155,9 +151,9 @@ function about() {
     if (t == null || t == "")
         t = 0;
     $.ajax({
-        url:"/showMoney",
+        url:"/showMoneny",
         type:"get",
-        data:{kid:t},
+        data:{kefu:t,days:$("#msgTypes").val()},
         dataType:"json",
         success:function (data) {
             $("#totl").text(data);

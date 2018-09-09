@@ -105,7 +105,7 @@ public class AdministratorController {
 	@RequestMapping("/ifexsit")
 	public boolean ifexsit(String ucount) {
 		Optional<Administor> administor = administratorRepository.findByUcount(ucount);
-		if(administor.get() != null) {
+		if(administor.isPresent()) {
 			return true;
 		}else
 			return false;

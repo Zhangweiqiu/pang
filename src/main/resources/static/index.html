@@ -63,15 +63,15 @@
             height: 30px;
         }
         .btn{
-            width: 30%;
-            height: 25px;
+            width: 33%;
+            height: 30px;
             background-color: #446FDD; /* Green */
             border: none;
             color: white;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 16px;
+            font-size:20px;
             margin-left: 35%;
             margin-top: 20px;
         }
@@ -103,10 +103,6 @@
                 <select id="kf" class="input">
 
                 </select>
-            </div>
-            <div class="list" style="height: 120px">
-                <div class="text">备注:</div>
-                <textarea rows="3" cols="20"   class="input" style="height: 60px" id="tell"></textarea>
             </div>
 
             <div class="button">
@@ -161,7 +157,7 @@
         $.ajax({
             url:'/passtopay',
             type:'post',
-            data:{name:name,money:money,tell:$("#tell").val(),kefu:$("#kf").val()},
+            data:{name:name,money:money,kefu:$("#kf").val()},
             dataType:'Json',
             success:function (result) {
                 abc = result.accessPayNo;
