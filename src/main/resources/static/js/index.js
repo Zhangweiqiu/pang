@@ -67,8 +67,9 @@ function checkUser() {
         dataType:'json',
         success:function (data) {
             if(data.states){
+                sessionStorage.setItem("aid",aid);
                 sessionStorage.setItem("role",data.role);
-                    window.location.href = "/admin/index.html";
+                window.location.href = "/admin/index.html";
             }else{
                 swal({
                     title:'错误信息',

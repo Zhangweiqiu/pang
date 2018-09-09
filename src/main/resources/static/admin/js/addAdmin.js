@@ -2,6 +2,22 @@
 function changeInfo() {
     var mc = $("#mycount").val();
     var mynames = $("#mynames").val();
+
+
+    $.ajax({
+        url: '/ifexsit',
+        type: 'post',
+        data: {ucount:mc},
+        dataType: 'Json',
+        success:function (data) {
+            if (data){
+                alert("该账户已存在");
+                return false;
+            }
+        }
+    });
+
+
     $.ajax({
         url:'/addAdmin',
         type:'post',

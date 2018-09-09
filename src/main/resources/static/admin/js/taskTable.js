@@ -19,6 +19,20 @@ $(function () {
         }
     });
 
+
+    var t = $("#msgType").val();
+    if (t == null || t == "")
+        t = 0;
+    $.ajax({
+        url:"/showMoney",
+        type:"get",
+        data:{kid:t},
+        dataType:"json",
+        success:function (data) {
+            $("#totl").text(data);
+        }
+    })
+
     //1.初始化Table
     var oTable = new TableInit();
     oTable.Init();
@@ -137,6 +151,18 @@ var TableInit = function () {
 
 
 function about() {
+    var t = $("#msgType").val();
+    if (t == null || t == "")
+        t = 0;
+    $.ajax({
+        url:"/showMoney",
+        type:"get",
+        data:{kid:t},
+        dataType:"json",
+        success:function (data) {
+            $("#totl").text(data);
+        }
+    })
     $("#taskTable").bootstrapTable('refresh');
 }
 
