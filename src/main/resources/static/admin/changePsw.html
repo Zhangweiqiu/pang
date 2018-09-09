@@ -50,7 +50,7 @@
         $.ajax({
             url:'/modifyPsw',
             type:'post',
-            data: {ucount:sessionStorage.getItem("aid"), password:$('#newpsw').val()},
+            data: {ucount:sessionStorage.getItem("aid"), newpassword:$('#newpsw').val()},
             dataType:'json',
             success:function (data) {
                 if (data)
@@ -59,6 +59,7 @@
                     alert("修改是吧");
             }
 
+    })
     }
 
 </script>

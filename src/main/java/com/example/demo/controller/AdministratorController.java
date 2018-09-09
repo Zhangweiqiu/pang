@@ -92,7 +92,9 @@ public class AdministratorController {
 	@RequestMapping("/modifyPsw")
 	public boolean modifyPassword(String ucount,String newpassword) {
 		Administor administor = new Administor();
-		administor.setUcount(ucount);
+		Optional<Administor> oadministor = administratorRepository.findByUcount(ucount);
+		administor = oadministor.get();
+		administor.setUcount(ucount);	
 		administor.setUpassword(newpassword);
 		if(administratorRepository.save(administor) != null) {
 			return true;

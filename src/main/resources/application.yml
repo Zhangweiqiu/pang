@@ -9,12 +9,6 @@ spring:
       hibernate:
         hbm2ddl:
           auto: update
-  jmx: 
-    default-domain: agentservice
-endpoints:
-  jmx:
-    domain: agentservice
-    unique-names: true
 server: 
   servlet:
     session: 

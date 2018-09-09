@@ -222,6 +222,7 @@ public class PayController {
 	@RequestMapping("/showMyPayList")
 	public JSONObject showMyPayList(Integer limit, Integer offset,Integer kefu,String days) {
 		List<PayManInfo> payManInfoList = new ArrayList<>();
+		Integer total = 0;
 		if(kefu == 0 && days.equals("0")) {
 			payManInfoList = payService.showPayList();
 		}
@@ -234,6 +235,11 @@ public class PayController {
 		if(kefu != 0 && !days.equals("0")) {
 			payManInfoList = payService.showmyPayList(kefu,days);
 		}
+		
+		for(PayManInfo payManInfo : payManInfoList) {
+			total += payManInfo.getTradeAmt();
+		}
+		
 		JSONObject jsonObject = new JSONObject();
 		int sie = limit * offset;
 		List<PayManInfo> payManInfoList1 = new ArrayList<>();
@@ -255,7 +261,7 @@ public class PayController {
         }
         jsonObject.put("total",payManInfoList.size());
         jsonObject.put("rows",payManInfoList1);
-        
+        jsonObject.put("total", total);
         return jsonObject;
 	}
 
@@ -265,16 +271,4 @@ public class PayController {
 		return payService.isPay(accessPayNo);
 	}
 	
-	@RequestMapping("/showMoney")
-	public Integer showMoney(Integer kid){
-		Integer total = 0;
-		if(kid == 0) {
-			total = payService.showAllMoney();
-		}else{
-			total = payService.showMyMoney(kid);
-		}
-		if(total == null)
-			total = 0;
-		return total;
-	}
 }

@@ -62,13 +62,4 @@ public class PayService {
 		return payRepository.showPayListByDays(days);
 	}
 
-	public Integer showAllMoney() {
-		return payRepository.showAllMoney();
-		
-	}
-	
-	public Integer showMyMoney(Integer kid) {
-		return payRepository.showMyMoney(kid);
-		
-	}
 }
