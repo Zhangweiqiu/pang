@@ -61,4 +61,14 @@ public class PayService {
 	public List<PayManInfo> showPayListByDays(String days) {
 		return payRepository.showPayListByDays(days);
 	}
+
+	public Integer showAllMoney() {
+		return payRepository.showAllMoney();
+		
+	}
+	
+	public Integer showMyMoney(Integer kid) {
+		return payRepository.showMyMoney(kid);
+		
+	}
 }

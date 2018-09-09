@@ -264,4 +264,15 @@ public class PayController {
 		System.out.println("----------------------------1");
 		return payService.isPay(accessPayNo);
 	}
+	
+	@RequestMapping("/showMoney")
+	public Integer showMoney(Integer kid){
+		Integer total = 0;
+		if(kid == null) {
+			total = payService.showAllMoney();
+		}else{
+			total = payService.showMyMoney(kid);
+		}
+		return total;
+	}
 }
