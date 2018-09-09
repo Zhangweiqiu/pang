@@ -89,7 +89,7 @@ public class AdministratorController {
 	}	
 
 	
-	@RequestMapping("/modifyPassword")
+	@RequestMapping("/modifyPsw")
 	public boolean modifyPassword(String ucount,String newpassword) {
 		Administor administor = new Administor();
 		administor.setUcount(ucount);

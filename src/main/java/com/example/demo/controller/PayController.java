@@ -273,6 +273,8 @@ public class PayController {
 		}else{
 			total = payService.showMyMoney(kid);
 		}
+		if(total == null)
+			total = 0;
 		return total;
 	}
 }
