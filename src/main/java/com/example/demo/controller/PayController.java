@@ -268,7 +268,7 @@ public class PayController {
 	@RequestMapping("/showMoney")
 	public Integer showMoney(Integer kid){
 		Integer total = 0;
-		if(kid == null) {
+		if(kid == 0) {
 			total = payService.showAllMoney();
 		}else{
 			total = payService.showMyMoney(kid);
