@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -90,6 +91,22 @@ public class AdministratorController {
 	
 	@RequestMapping("/modifyPassword")
 	public boolean modifyPassword(String ucount,String newpassword) {
-		return true;
+		Administor administor = new Administor();
+		administor.setUcount(ucount);
+		administor.setUpassword(newpassword);
+		if(administratorRepository.save(administor) != null) {
+			return true;
+		}
+		return false;
 	}
+	
+	@RequestMapping("/ifexsit")
+	public boolean ifexsit(String ucount) {
+		Optional<Administor> administor = administratorRepository.findByUcount(ucount);
+		if(administor.get() != null) {
+			return true;
+		}else
+			return false;
+	}
+	
 }
