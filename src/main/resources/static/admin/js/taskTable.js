@@ -114,7 +114,7 @@ var TableInit = function () {
                 title: '支付时间',
                 align: 'center',
                 formatter: function (value, row, index) {
-                    return changeDateFormat(value)
+                    return changeDateFormat(value,'yyyy-MM-dd HH:mm:ss')
                 }
             }, {
                 field: 'goodsName',
@@ -184,18 +184,30 @@ function about() {
 
 
 //转换日期格式(时间戳转换为datetime格式)
-function changeDateFormat(cellval) {
-    var dateVal = cellval + "";
-    if (cellval != null) {
-        var date = new Date(parseInt(dateVal.replace("/Date(", "").replace(")/", ""), 10));
-        var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-        var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-
-        var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-        var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-        var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-
-        return date.getFullYear() + "-" + month + "-" + currentDate + " " + hours + ":" + minutes + ":" + seconds;
-    }
+function changeDateFormat(time, format) {
+	var t = new Date(time);
+    var tf = function (i) { return (i < 10 ? '0' : '') + i };
+    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function (a) {
+        switch (a) {
+            case 'yyyy':
+                return tf(t.getFullYear());
+                break;
+            case 'MM':
+                return tf(t.getMonth() + 1);
+                break;
+            case 'mm':
+                return tf(t.getMinutes());
+                break;
+            case 'dd':
+                return tf(t.getDate());
+                break;
+            case 'HH':
+                return tf(t.getHours());
+                break;
+            case 'ss':
+                return tf(t.getSeconds());
+                break;
+        }
+    })
 }
 
