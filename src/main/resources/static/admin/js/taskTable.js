@@ -21,13 +21,18 @@ $(function () {
 
 
     var t = $("#msgType").val();
-    var t = $("#msgType").val();
+    var time1 = $("#time1").val();
+    var time2 = $("#time2").val();
     if (t == null || t == "")
         t = 0;
+    if (time1 == null || time1 == "")
+        time1 = 0;
+    if (time2 == null || time2 == "")
+        time2 = 0;
     $.ajax({
         url:"/showMoneny",
         type:"get",
-        data:{kefu:t,days:$("#msgTypes").val()},
+        data:{kefu:t,time1:time1,time2:time2,},
         dataType:"json",
         success:function (data) {
             $("#totl").text(data);
@@ -167,7 +172,7 @@ function about() {
     $.ajax({
         url:"/showMoneny",
         type:"get",
-        data:{kefu:t, time1:time1, time2:time2,},
+        data:{kefu:t,time1:time1,time2:time2,},
         dataType:"json",
         success:function (data) {
             $("#totl").text(data);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>支付详情</title>
@@ -42,15 +42,18 @@
                                 <div style="float: left">担保人</div>
                                         <select class="form-control" name="msg_type" id="msgType" style="float: left" >
                                         </select>
+                            </br>
+                                <div>总金额：<span id="totl"></span>分</div>
                             </div>
                             <div class="myText-content" style="float: left; width: 50px; height: 10px;" >
                             </div>
                             <div class="myText-content" style="float: left">
                                 <div style="float: left">账单时间</div>
+                                </br>
                                         <input type="date" id="time1" /> 到 <input type="date" id="time2" />
                             </div>
 
-                            <div>总金额：<span id="totl"></span>分</div>
+
                         </div>
                         <div class="myText-content" style="float: left; width: 50px; height: 10px; padding-top: 30px;padding-left: 20px" >
                              <button type="button" class="btn btn-info" onclick="about();">查询</button>
