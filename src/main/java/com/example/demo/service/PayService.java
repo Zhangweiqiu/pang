@@ -62,4 +62,12 @@ public class PayService {
 		return payRepository.showPayListByDays(days);
 	}
 
+	public List<PayManInfo> showPayListBytime(String time1,String time2) {
+		return payRepository.showPayListBytime(time1,time2);
+	}
+
+	public List<PayManInfo> showPayListByKefuAndTime(Integer kefu, String mindate, String maxdate) {
+		return payRepository.showPayListByKefuAndTime(kefu,mindate,maxdate);
+	}
+
 }

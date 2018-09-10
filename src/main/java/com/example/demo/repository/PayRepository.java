@@ -37,4 +37,12 @@ public interface PayRepository extends CrudRepository<PayManInfo,Long>{
 	@Query(nativeQuery = true,value = "SELECT   *   FROM   pay_man_info where trade_status='1' and DATE_SUB(CURDATE(), INTERVAL ?1 DAY) <= DATE(pay_time) order by  pay_time")  
 	List<PayManInfo> showPayListByDays(String days);
 
+	@Modifying
+	@Query(nativeQuery = true,value = "SELECT * FROM pay_man_info WHERE trade_status='1' AND (pay_time > ?1 AND pay_time<?2) order by  pay_time")  
+	List<PayManInfo> showPayListBytime(String time1, String time2);
+	
+	@Modifying
+	@Query(nativeQuery = true,value = "SELECT * FROM pay_man_info WHERE trade_status='1' and kefu=?1 AND (pay_time > ?2 AND pay_time<?3) order by  pay_time")  
+	List<PayManInfo> showPayListByKefuAndTime(Integer kefu, String mindate, String maxdate);
+
 }

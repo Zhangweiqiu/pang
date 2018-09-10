@@ -224,20 +224,46 @@ public class PayController {
 	}
 	
 	@RequestMapping("/showMyPayList")
-	public JSONObject showMyPayList(Integer limit, Integer offset,Integer kefu,String days) {
+	public JSONObject showMyPayList(Integer limit, Integer offset,Integer kefu,String time1,String time2) {
 		List<PayManInfo> payManInfoList = new ArrayList<>();
-		if(kefu == 0 && days.equals("0")) {
-			payManInfoList = payService.showPayList();
-		}
-		if(kefu == 0 && !days.equals("0")) {
-			payManInfoList = payService.showPayListByDays(days);
-		}
-		if(kefu != 0 && days.equals("0")) { 
-			payManInfoList = payService.showPayListByKefu(kefu);
-		}
-		if(kefu != 0 && !days.equals("0")) {
-			payManInfoList = payService.showmyPayList(kefu,days);
-		}
+		String maxdate = "";
+		String mindate = "";
+		int res=time1.compareTo(time2);
+        if(res>0) {
+        	maxdate = time1;
+        	mindate = time2;
+        }
+        else if(res==0)
+        	maxdate = mindate = time1;
+        else  {
+        	maxdate = time2;
+        	mindate = time1;
+        }
+        if(time1.equals("0") && time2.equals("0")) {
+        	if(kefu == 0) {
+        		payManInfoList = payService.showPayList();
+        	}else
+        		payManInfoList = payService.showPayListByKefu(kefu);
+        }else {
+        	if(kefu == 0) {
+        		payManInfoList = payService.showPayListBytime(mindate,maxdate);
+        	}else
+        		payManInfoList = payService.showPayListByKefuAndTime(kefu,mindate,maxdate);
+        }
+        
+		
+//		if(kefu == 0 && days.equals("0")) {
+//			payManInfoList = payService.showPayList();
+//		}
+//		if(kefu == 0 && !days.equals("0")) {
+//			payManInfoList = payService.showPayListByDays(days);
+//		}
+//		if(kefu != 0 && days.equals("0")) { 
+//			payManInfoList = payService.showPayListByKefu(kefu);
+//		}
+//		if(kefu != 0 && !days.equals("0")) {
+//			payManInfoList = payService.showmyPayList(kefu,days);
+//		}
 		
 		JSONObject jsonObject = new JSONObject();
 		int sie = limit * offset;
@@ -270,21 +296,45 @@ public class PayController {
 	}
 	
 	@RequestMapping("/showMoneny")
-	public Integer showMoneny(Integer kefu,String days) {
-		List<PayManInfo> payManInfoList = new ArrayList<>();
+	public Integer showMoneny(Integer kefu,String time1,String time2) {
 		Integer total = 0;
-		if(kefu == 0 && days.equals("0")) {
-			payManInfoList = payService.showPayList();
-		}
-		if(kefu == 0 && !days.equals("0")) {
-			payManInfoList = payService.showPayListByDays(days);
-		}
-		if(kefu != 0 && days.equals("0")) { 
-			payManInfoList = payService.showPayListByKefu(kefu);
-		}
-		if(kefu != 0 && !days.equals("0")) {
-			payManInfoList = payService.showmyPayList(kefu,days);
-		}
+		List<PayManInfo> payManInfoList = new ArrayList<>();
+		String maxdate = "";
+		String mindate = "";
+		int res=time1.compareTo(time2);
+        if(res>0) {
+        	maxdate = time1;
+        	mindate = time2;
+        }
+        else if(res==0)
+        	maxdate = mindate = time1;
+        else  {
+        	maxdate = time2;
+        	mindate = time1;
+        }
+        if(time1.equals("0") && time2.equals("0")) {
+        	if(kefu == 0) {
+        		payManInfoList = payService.showPayList();
+        	}else
+        		payManInfoList = payService.showPayListByKefu(kefu);
+        }else {
+        	if(kefu == 0) {
+        		payManInfoList = payService.showPayListBytime(mindate,maxdate);
+        	}else
+        		payManInfoList = payService.showPayListByKefuAndTime(kefu,mindate,maxdate);
+        }
+//		if(kefu == 0 && days.equals("0")) {
+//			payManInfoList = payService.showPayList();
+//		}
+//		if(kefu == 0 && !days.equals("0")) {
+//			payManInfoList = payService.showPayListByDays(days);
+//		}
+//		if(kefu != 0 && days.equals("0")) { 
+//			payManInfoList = payService.showPayListByKefu(kefu);
+//		}
+//		if(kefu != 0 && !days.equals("0")) {
+//			payManInfoList = payService.showmyPayList(kefu,days);
+//		}
 		
 		for(PayManInfo payManInfo : payManInfoList) {
 			if(payManInfo.getTradeAmt() != null)
