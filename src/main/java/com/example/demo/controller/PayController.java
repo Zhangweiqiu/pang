@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.pojo.PayManInfo;
+import com.example.demo.repository.KefuRepository;
 import com.example.demo.service.GoodsNameService;
 import com.example.demo.service.PayService;
 import com.example.demo.util.AESUtil;
@@ -40,6 +41,9 @@ public class PayController {
 	
 	@Autowired
 	GoodsNameService goodsNameService; 
+	
+	@Autowired
+	KefuRepository kefuRepository;
 	
 	@Value("${payman.accessId}")
     private String accessId;
@@ -60,8 +64,9 @@ public class PayController {
 		Map<String,Object> map = new HashMap<String, Object>();
 		String accessPayNo = UUID.randomUUID().toString().replace("-", "").toLowerCase();;
 		PayManInfo payManInfo = new PayManInfo();
-		payManInfo.setName(name);
+		payManInfo.setName(name);	
 		payManInfo.setKefu(kefu);
+		payManInfo.setKname(kefuRepository.findById(kefu).get().getKname());
 //		if(tell == null) {
 //			payManInfo.setRemarks("");
 //		}

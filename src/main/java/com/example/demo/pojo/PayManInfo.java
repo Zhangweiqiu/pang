@@ -36,6 +36,16 @@ public class PayManInfo {
 	
 	private Integer kefu;//客服
 	
+	private String kname;
+	
+	public String getKname() {
+		return kname;
+	}
+
+	public void setKname(String kname) {
+		this.kname = kname;
+	}
+
 	public Integer getKefu() {
 		return kefu;
 	}
