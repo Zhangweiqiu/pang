@@ -1,5 +1,5 @@
 var option = "";
-var nu = "==暂无可选客服==";
+var nu = "==暂无可选担保人==";
 $(function () {
     $.ajax({
         url:"/getKefus",
@@ -7,7 +7,7 @@ $(function () {
         data:{},
         dataType:'Json',
         success:function (data) {
-            option ="<option value = '" + "0"+"'>" + "====请选择客服===="+"</option>";
+            option ="<option value = '" + "0"+"'>" + "====请选择担保人===="+"</option>";
             if (data.leng > 0) {
                 for (var i = 0 ; i < data.leng; i++){
                     option += "<option value = '" + data.list[i].kid+"'>" + data.list[i].kname +"</option>";
@@ -97,12 +97,12 @@ var TableInit = function () {
             }, {
                 field: 'tradeAmt',
                 align: 'center',
-                title: '订单金额'
+                title: '订单金额（分）'
 
             }, {
                 field: 'actualAmt',
                 align: 'center',
-                title: '实际金额'
+                title: '实际金额（分）'
 
             }, {
                 field: 'payTime',
@@ -116,8 +116,8 @@ var TableInit = function () {
                 title: '商品名称',
                 align: 'center'
             }, {
-                field: 'kefu',
-                title: '客服',
+                field: 'kname',
+                title: '担保人',
                 align: 'center'
             }
             ],

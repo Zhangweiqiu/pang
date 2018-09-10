@@ -14,7 +14,6 @@
         .all{
             width: 100%;
             height: 740px;
-            background-image: url("img/timg.jpg");
         }
 
         .container{
@@ -99,7 +98,7 @@
             </div>
 
             <div class="list">
-                <div class="text">客服<span>*</span>:</div>
+                <div class="text">担保人<span>*</span>:</div>
                 <select id="kf" class="input">
 
                 </select>
@@ -116,7 +115,7 @@
 <script type="text/javascript" src="js/jquerysession.js"></script>
 <script type="text/javascript">
     var option = "";
-    var nu = "暂无可选客服";
+    var nu = "暂无可选担保人";
     $(function () {
         $.ajax({
             url:"/getKefus",
@@ -125,7 +124,7 @@
             dataType:'Json',
             success:function (data) {
 
-                option ="<option value = '" + "0"+"'>" + "===请选择客服==="+"</option>";
+                option ="<option value = '" + "0"+"'>" + "===请选择担保人==="+"</option>";
                 if (data.leng > 0) {
                     for (var i = 0 ; i < data.leng; i++){
                         option += "<option value = '" + data.list[i].kid+"'>" + data.list[i].kname +"</option>";
